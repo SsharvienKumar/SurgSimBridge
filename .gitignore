@@ -1,0 +1,11 @@
+.import/
+.export/
+godot_cataract.pck
+*.tmp
+*.import
+*.log
+*.mono
+*.db
+*.DS_Store
+
+
