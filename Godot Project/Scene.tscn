@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=4 uid="uid://u08p6pa83083"]
+[gd_scene load_steps=32 format=4 uid="uid://u08p6pa83083"]
 
 [ext_resource type="ArrayMesh" uid="uid://d0e7420m8jp2m" path="res://eye_white.obj" id="1"]
 [ext_resource type="Script" uid="uid://c0s4u2xuyd4pe" path="res://scene.gd" id="1_66br4"]
 [ext_resource type="ArrayMesh" uid="uid://c8xy872nomd6a" path="res://eyeball_sclera.obj" id="2"]
 [ext_resource type="Script" uid="uid://dxfvyw13foe68" path="res://Camera.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://dwqlofnh8tr63" path="res://iris_texture.png" id="4_66br4"]
+[ext_resource type="Script" uid="uid://cp056tdkcl20g" path="res://eyeball.gd" id="4_eort7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_66br4"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -293,6 +294,7 @@ script = ExtResource("4")
 [node name="Eyeball" type="CSGMesh3D" parent="."]
 mesh = ExtResource("1")
 material = SubResource("StandardMaterial3D_7mckg")
+script = ExtResource("4_eort7")
 
 [node name="Cornea" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.403319)
@@ -326,7 +328,7 @@ skeleton = NodePath("")
 transform = Transform3D(-3, -4.52987e-07, 0, 4.52987e-07, -3, 0, 0, 0, 3, 5.6398, -7.15731, 14.3108)
 
 [node name="Forcep Base" type="MeshInstance3D" parent="katena forceps"]
-transform = Transform3D(1.52534, 0, 0, 0, 1.52534, 0, 0, 0, 1.52534, 0, 1.8349, 0)
+transform = Transform3D(1.52534, 2.84217e-14, 0, -2.84217e-14, 1.52534, 0, 0, 0, 1.52534, 12.2986, 1.8349, 2.18203)
 mesh = SubResource("ArrayMesh_xy6hy")
 skeleton = NodePath("")
 
