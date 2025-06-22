@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://u08p6pa83083"]
+[gd_scene load_steps=37 format=4 uid="uid://u08p6pa83083"]
 
 [ext_resource type="ArrayMesh" uid="uid://d0e7420m8jp2m" path="res://eye_white.obj" id="1"]
 [ext_resource type="Script" uid="uid://c0s4u2xuyd4pe" path="res://scene.gd" id="1_66br4"]
@@ -43,6 +43,11 @@ uv1_scale = Vector3(0.01, 0.01, 0.01)
 uv1_offset = Vector3(0.5, 0.5, 0)
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dob7g"]
+albedo_texture = ExtResource("4_66br4")
+normal_enabled = true
+uv1_offset = Vector3(0.1, 0.1, 0)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eort7"]
 transparency = 1
 cull_mode = 1
@@ -53,16 +58,12 @@ clearcoat_enabled = true
 anisotropy = 1.0
 subsurf_scatter_strength = 0.45
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dob7g"]
-albedo_texture = ExtResource("4_66br4")
-normal_enabled = true
-uv1_offset = Vector3(0.1, 0.1, 0)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66br4"]
 transparency = 1
 cull_mode = 2
 depth_draw_mode = 1
-albedo_color = Color(0.902, 0.902, 0.71, 0.6)
+albedo_color = Color(0.901961, 0.901961, 0.709804, 0.784314)
+metallic_specular = 0.6
 roughness = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7t18"]
@@ -268,6 +269,162 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qik2w")
 
+[sub_resource type="Animation" id="Animation_dob7g"]
+resource_name = "CamMovement"
+length = 690.0
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Camera3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0878378, 0.366667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.939295, 40.0224), Vector3(0.744817, 0.939295, 40.0224), Vector3(0, 0.939295, 40.0224), Vector3(0, -0.74253, 40.0224)]
+}
+
+[sub_resource type="Animation" id="Animation_tysh6"]
+resource_name = "EyeMovement"
+length = 690.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.93333, 3.95897, 4.96283, 6.01689, 6.95173, 7.96187, 9.95704, 11.9333, 13.9667, 19.9454, 33.9744, 36.9546, 38.8494, 44.9729, 58.9642),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [Vector3(-1, -1, 0)],
+"method": &"flinch_eye"
+}, {
+"args": [Vector3(-1, -1, 0)],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [Vector3(0, 0, 1)],
+"method": &"flinch_eye"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.89479, 1.91988, 1.93871),
+"transitions": PackedFloat32Array(1, 1, 1.03526e-05, 2.08441e-05),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -0.0174533, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q6i3i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.939295, 40.0224)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eort7"]
+resource_name = "SceneMovement"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.93333, 3.95897, 6.01689, 6.95173),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q6i3i"]
+_data = {
+&"CamMovement": SubResource("Animation_dob7g"),
+&"EyeMovement": SubResource("Animation_tysh6"),
+&"RESET": SubResource("Animation_q6i3i"),
+&"SceneMovement": SubResource("Animation_eort7")
+}
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_66br4")
 
@@ -286,39 +443,46 @@ light_angular_distance = 1.49
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.9707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.939295, 40.0224)
 environment = SubResource("Environment_7mckg")
 fov = 44.5
 script = ExtResource("4")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999601, 0.0282357, 0, -0.0282357, 0.999601, 0, 0, 0)
+visible = false
+light_energy = 16.0
+spot_range = 56.5557
+spot_angle = 15.2202
 
 [node name="Eyeball" type="CSGMesh3D" parent="."]
 mesh = ExtResource("1")
 material = SubResource("StandardMaterial3D_7mckg")
 script = ExtResource("4_eort7")
 
-[node name="Cornea" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.403319)
-mesh = ExtResource("2")
-material = SubResource("StandardMaterial3D_eort7")
-
-[node name="Iris" type="CSGTorus3D" parent="."]
-transform = Transform3D(6.63709, -0.000350226, 0.010979, 0.011028, 0.0128463, -6.63615, 0.00283928, 0.768786, 0.110894, 0, 0.119202, 10.6516)
-inner_radius = 0.285745
+[node name="Iris" type="CSGTorus3D" parent="Eyeball"]
+transform = Transform3D(6.63709, -0.00035023, 0.0109815, 0.0110305, 0.0128492, -6.63615, 0.00283928, 0.768786, 0.110919, 0, 0.119202, 10.6516)
+inner_radius = 0.6
 outer_radius = 0.905929
 sides = 60
 ring_sides = 60
 material = SubResource("StandardMaterial3D_dob7g")
 
-[node name="capsuleandlens" type="Node3D" parent="."]
+[node name="Cornea" type="CSGMesh3D" parent="Eyeball"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.403319)
+mesh = ExtResource("2")
+material = SubResource("StandardMaterial3D_eort7")
+
+[node name="capsuleandlens" type="Node3D" parent="Eyeball"]
 transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 7.49294)
 
-[node name="Lens" type="MeshInstance3D" parent="capsuleandlens"]
+[node name="Lens" type="MeshInstance3D" parent="Eyeball/capsuleandlens"]
 transform = Transform3D(0.649112, 0, 0, 0, 0, 0.649112, 0, -0.649112, 0, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_66br4")
 mesh = SubResource("ArrayMesh_t671y")
 skeleton = NodePath("")
 
-[node name="CapsularBag" type="MeshInstance3D" parent="capsuleandlens"]
+[node name="CapsularBag" type="MeshInstance3D" parent="Eyeball/capsuleandlens"]
 transform = Transform3D(0.721235, 0, 0, 0, 0, 0.721235, 0, -0.721235, 0, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_tysh6")
 mesh = SubResource("ArrayMesh_8iywq")
@@ -341,3 +505,9 @@ skeleton = NodePath("")
 transform = Transform3D(0.167407, 0, 0, 0, 0.743967, 0, 0, 0, 0.743967, -0.000775523, -0.255193, 0)
 mesh = SubResource("ArrayMesh_iskx2")
 skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Eyeball")
+libraries = {
+&"": SubResource("AnimationLibrary_q6i3i")
+}

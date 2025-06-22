@@ -1,19 +1,19 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1749807265
-Camera.gd::GDScript/GDScript::8785246456384207631::1749758844::0::1::::<>Camera3D<><>0<>0<><>::
-capsuleandlens.glb::PackedScene/PackedScene::1661155760677948733::1749758844::1749760061::1::::<><><>0<>0<>4c4eb12877611e9b612b4a0bb96b254d<>res://.godot/imported/capsuleandlens.glb-0fcf37e8853f9fd9cae035a79fd8e6de.scn::
-default_env.tres::Environment::2207272350199896608::1749807183::0::1::::<><><>0<>0<><>::
-eyeball.gd::GDScript/GDScript::5879161338237785276::1749760771::0::1::::<>Node3D<><>0<>0<><>::
-eyeball.png::CompressedTexture2D/CompressedTexture2D::905241911683207770::1749758844::1749760060::1::::<><><>0<>0<>40ae50981606c8f4b1d73555f7ead079<>res://.godot/imported/eyeball.png-6c9d120f02069cc9c3276e27ab11f758.s3tc.ctex::
-eyeball_sclera.obj::Mesh/Mesh::7138071757876671562::1749758844::1749760060::1::::<><><>0<>0<>10aa4557d71c374899acb668e188be83<>res://.godot/imported/eyeball_sclera.obj-0f6a2a63084a2b6e22bead233150caf7.mesh<*>res://.godot/imported/eyeball_sclera.obj-0f6a2a63084a2b6e22bead233150caf7.mesh::
-eyetrocar.obj::Mesh/Mesh::4312618947818382315::1749758844::1749760060::1::::<><><>0<>0<>e608ed389aa5fd3b5cc0ddfc8ffd005c<>res://.godot/imported/eyetrocar.obj-830a7208e44dc17d29306a7f93587db7.mesh<*>res://.godot/imported/eyetrocar.obj-830a7208e44dc17d29306a7f93587db7.mesh::
-eye_white.obj::Mesh/Mesh::8924236842178381174::1749758844::1749760060::1::::<><><>0<>0<>261849ff4f4c599b69ced95d5ffa84e2<>res://.godot/imported/eye_white.obj-d6627dd8c4604dc87aa68815e494ef9c.mesh<*>res://.godot/imported/eye_white.obj-d6627dd8c4604dc87aa68815e494ef9c.mesh::
-icon.png::CompressedTexture2D/CompressedTexture2D::7088085964452675777::1749758844::1749760060::1::::<><><>0<>0<>5ea3e25b019599fb6dde7fd52f3d45eb<>res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex::
-iris.obj::Mesh/Mesh::1320237156523131779::1749758844::1749760060::1::::<><><>0<>0<>cfd47285747e46414da6466ff2e222f4<>res://.godot/imported/iris.obj-f29fb831d89742b9221f487fa052fed2.mesh<*>res://.godot/imported/iris.obj-f29fb831d89742b9221f487fa052fed2.mesh::
-iris.png::CompressedTexture2D/CompressedTexture2D::8588347103898742496::1749758844::1749760060::1::::<><><>0<>0<>89a6ebde7a45ebcdc8ee854974a3d698<>res://.godot/imported/iris.png-26b04afa58c41c9bd5c789d92f51156d.s3tc.ctex::
-iris_texture.png::CompressedTexture2D/CompressedTexture2D::8737139826278194374::1749758844::1749760060::1::::<><><>0<>0<>22c17ed67fcdfc7fd342d97e77847834<>res://.godot/imported/iris_texture.png-4d16c6df1395b65798180276a573793f.s3tc.ctex::
-katena forceps.glb::PackedScene/PackedScene::98122907870694944::1749758844::1749760062::1::::<><><>0<>0<>cad51e2aa288459009f2c869eb7793b2<>res://.godot/imported/katena forceps.glb-236fd682b34580c9ae8603d8911d8650.scn::
-scene.gd::GDScript/GDScript::6566519221180301006::1749758844::0::1::::<>Node3D<><>0<>0<><>::
-Scene.tscn::PackedScene::1457418415723159186::1749807183::0::1::::<><><>0<>0<><>::uid://d0e7420m8jp2m::::res://eye_white.obj<>uid://c0s4u2xuyd4pe::::res://scene.gd<>uid://c8xy872nomd6a::::res://eyeball_sclera.obj<>uid://dxfvyw13foe68::::res://Camera.gd<>uid://dwqlofnh8tr63::::res://iris_texture.png<>uid://cp056tdkcl20g::::res://eyeball.gd
-toolplaceholder.glb::PackedScene/PackedScene::3028563208025055191::1749758844::1749760062::1::::<><><>0<>0<>d6ac3bd9350c0156779373beccc8efc3<>res://.godot/imported/toolplaceholder.glb-fc97e1671f09f8c597d5371d961b95f9.scn::
-vessels.obj::Mesh/Mesh::4316213264770684619::1749758844::1749760061::1::::<><><>0<>0<>88f8ade0cd01b7f831fd9dca7e2efaf6<>res://.godot/imported/vessels.obj-7f1af0ce951c2aaacfa8a2dcb129be71.mesh<*>res://.godot/imported/vessels.obj-7f1af0ce951c2aaacfa8a2dcb129be71.mesh::
+::res://::1750616799
+Camera.gd::GDScript/GDScript::8785246456384207631::1750343831::0::1::::<>Camera3D<><>0<>0<><>::
+capsuleandlens.glb::PackedScene/PackedScene::1661155760677948733::1749809902::1749810049::1::::<><><>0<>0<>4c4eb12877611e9b612b4a0bb96b254d<>res://.godot/imported/capsuleandlens.glb-0fcf37e8853f9fd9cae035a79fd8e6de.scn::
+default_env.tres::Environment::2207272350199896608::1750421604::0::1::::<><><>0<>0<><>::
+eyeball.gd::GDScript/GDScript::5879161338237785276::1750353194::0::1::::<>Node3D<><>0<>0<><>::
+eyeball.png::CompressedTexture2D/CompressedTexture2D::905241911683207770::1749809902::1749810047::1::::<><><>0<>0<>40ae50981606c8f4b1d73555f7ead079<>res://.godot/imported/eyeball.png-6c9d120f02069cc9c3276e27ab11f758.s3tc.ctex::
+eyeball_sclera.obj::Mesh/Mesh::7138071757876671562::1749809902::1749810047::1::::<><><>0<>0<>10aa4557d71c374899acb668e188be83<>res://.godot/imported/eyeball_sclera.obj-0f6a2a63084a2b6e22bead233150caf7.mesh<*>res://.godot/imported/eyeball_sclera.obj-0f6a2a63084a2b6e22bead233150caf7.mesh::
+eyetrocar.obj::Mesh/Mesh::4312618947818382315::1749809902::1749810047::1::::<><><>0<>0<>e608ed389aa5fd3b5cc0ddfc8ffd005c<>res://.godot/imported/eyetrocar.obj-830a7208e44dc17d29306a7f93587db7.mesh<*>res://.godot/imported/eyetrocar.obj-830a7208e44dc17d29306a7f93587db7.mesh::
+eye_white.obj::Mesh/Mesh::8924236842178381174::1749809902::1749810047::1::::<><><>0<>0<>261849ff4f4c599b69ced95d5ffa84e2<>res://.godot/imported/eye_white.obj-d6627dd8c4604dc87aa68815e494ef9c.mesh<*>res://.godot/imported/eye_white.obj-d6627dd8c4604dc87aa68815e494ef9c.mesh::
+icon.png::CompressedTexture2D/CompressedTexture2D::7088085964452675777::1749809902::1749810046::1::::<><><>0<>0<>5ea3e25b019599fb6dde7fd52f3d45eb<>res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.ctex::
+iris.obj::Mesh/Mesh::1320237156523131779::1749809902::1749810047::1::::<><><>0<>0<>cfd47285747e46414da6466ff2e222f4<>res://.godot/imported/iris.obj-f29fb831d89742b9221f487fa052fed2.mesh<*>res://.godot/imported/iris.obj-f29fb831d89742b9221f487fa052fed2.mesh::
+iris.png::CompressedTexture2D/CompressedTexture2D::8588347103898742496::1749809902::1749810047::1::::<><><>0<>0<>89a6ebde7a45ebcdc8ee854974a3d698<>res://.godot/imported/iris.png-26b04afa58c41c9bd5c789d92f51156d.s3tc.ctex::
+iris_texture.png::CompressedTexture2D/CompressedTexture2D::8737139826278194374::1749809902::1749810047::1::::<><><>0<>0<>22c17ed67fcdfc7fd342d97e77847834<>res://.godot/imported/iris_texture.png-4d16c6df1395b65798180276a573793f.s3tc.ctex::
+katena forceps.glb::PackedScene/PackedScene::98122907870694944::1749809902::1749810049::1::::<><><>0<>0<>cad51e2aa288459009f2c869eb7793b2<>res://.godot/imported/katena forceps.glb-236fd682b34580c9ae8603d8911d8650.scn::
+scene.gd::GDScript/GDScript::6566519221180301006::1750185134::0::1::::<>Node3D<><>0<>0<><>::
+Scene.tscn::PackedScene::1457418415723159186::1750421604::0::1::::<><><>0<>0<><>::uid://d0e7420m8jp2m::::res://eye_white.obj<>uid://c0s4u2xuyd4pe::::res://scene.gd<>uid://c8xy872nomd6a::::res://eyeball_sclera.obj<>uid://dxfvyw13foe68::::res://Camera.gd<>uid://dwqlofnh8tr63::::res://iris_texture.png<>uid://cp056tdkcl20g::::res://eyeball.gd
+toolplaceholder.glb::PackedScene/PackedScene::3028563208025055191::1749809902::1749810050::1::::<><><>0<>0<>d6ac3bd9350c0156779373beccc8efc3<>res://.godot/imported/toolplaceholder.glb-fc97e1671f09f8c597d5371d961b95f9.scn::
+vessels.obj::Mesh/Mesh::4316213264770684619::1749809902::1749810048::1::::<><><>0<>0<>88f8ade0cd01b7f831fd9dca7e2efaf6<>res://.godot/imported/vessels.obj-7f1af0ce951c2aaacfa8a2dcb129be71.mesh<*>res://.godot/imported/vessels.obj-7f1af0ce951c2aaacfa8a2dcb129be71.mesh::

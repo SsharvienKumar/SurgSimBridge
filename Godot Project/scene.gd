@@ -4,6 +4,9 @@ var radius = 2.8
 var t = 0.0
 var dilating = false
 
+func _ready():
+	get_node("AnimationPlayer").play("EyeMovement")
+
 func _process(delta: float) -> void:
 	if dilating:
 		t += delta
