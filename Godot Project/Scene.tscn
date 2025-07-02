@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://u08p6pa83083"]
+[gd_scene load_steps=41 format=4 uid="uid://u08p6pa83083"]
 
 [ext_resource type="ArrayMesh" uid="uid://d0e7420m8jp2m" path="res://eye_white.obj" id="1"]
 [ext_resource type="Script" uid="uid://c0s4u2xuyd4pe" path="res://scene.gd" id="1_66br4"]
@@ -271,30 +271,52 @@ shadow_mesh = SubResource("ArrayMesh_qik2w")
 
 [sub_resource type="Animation" id="Animation_dob7g"]
 resource_name = "CamMovement"
-length = 690.0
-tracks/0/type = "rotation_3d"
+length = 100.0
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Camera3D")
+tracks/0/path = NodePath("../Camera3D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array()
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.34, 0.53, 0.56, 1.2, 2),
+"transitions": PackedFloat32Array(1, 2.54912, 2.54912, 2.07053, 2.07053, 1.68179, 1),
+"update": 0,
+"values": [Vector3(0, 3, 40.022), Vector3(1, 0.75, 40.022), Vector3(1, 0.75, 40.022), Vector3(1.5, 2, 40.022), Vector3(1.5, 2, 40.022), Vector3(0, 4, 40.022), Vector3(0, 4, 40.022)]
+}
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Camera3D:position")
+tracks/1/path = NodePath("../Camera3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0878378, 0.366667, 0.833333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0.939295, 40.0224), Vector3(0.744817, 0.939295, 40.0224), Vector3(0, 0.939295, 40.0224), Vector3(0, -0.74253, 40.0224)]
+"values": [Vector3(-0.0523599, 0, 0), Vector3(-0.0523599, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_tysh6"]
 resource_name = "EyeMovement"
-length = 690.0
+length = 100.0
+markers = [{
+"color": Color(1, 0.352941, 1, 1),
+"name": &"incision_start",
+"time": 25.4855
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"flinch that stays",
+"time": 33.99
+}, {
+"color": Color(1, 0.152941, 0.0666667, 1),
+"name": &"incis_start",
+"time": 8.28
+}, {
+"color": Color(1, 0.133333, 0.0941176, 1),
+"name": &"inc_end",
+"time": 17.02
+}]
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -302,7 +324,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.93333, 3.95897, 4.96283, 6.01689, 6.95173, 7.96187, 9.95704, 11.9333, 13.9667, 19.9454, 33.9744, 36.9546, 38.8494, 44.9729, 58.9642),
+"times": PackedFloat32Array(1.55, 3.5, 4.45, 5.52, 7.1, 8.15, 10.23, 12.06, 14.02, 18.58, 20.12, 34.52, 36.42, 39.04, 58.9642),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
@@ -335,13 +357,13 @@ tracks/0/keys = {
 "args": [],
 "method": &"flinch_eye"
 }, {
-"args": [Vector3(-1, -1, 0)],
-"method": &"flinch_eye"
-}, {
-"args": [Vector3(-1, -1, 0)],
-"method": &"flinch_eye"
-}, {
 "args": [],
+"method": &"flinch_eye"
+}, {
+"args": [Vector3(-1, 0, 1)],
+"method": &"flinch_eye"
+}, {
+"args": [Vector3(-1, -1, 0)],
 "method": &"flinch_eye"
 }, {
 "args": [],
@@ -354,14 +376,38 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.89479, 1.91988, 1.93871),
-"transitions": PackedFloat32Array(1, 1, 1.03526e-05, 2.08441e-05),
+"times": PackedFloat32Array(10.35, 11.0048, 16.3, 16.5, 23.4, 23.45, 23.55, 24.05, 24.1, 25.48, 28.5, 30),
+"transitions": PackedFloat32Array(1, 1.8025, 0.5, 1.23114, 1, 1, 1, 1, 1, 1, 0.392292, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -0.0174533, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.2, 0.2, 0), Vector3(0.2, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0.2, 0), Vector3(0.15, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.2, 0.2, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(10.35, 11.0048, 16.3, 16.5, 23.4, 23.45, 23.55, 24.05, 24.1, 25.48, 28.5, 30),
+"transitions": PackedFloat32Array(1, 1.86606, 0.63728, 1.18921, 1, 2.37841, 2.37841, 1, 1, 1, 0.420448, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0174533, 0.0174533, 0), Vector3(-0.0174533, 0.0174533, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0174533, 0, 0.0174533), Vector3(-0.0174533, 0, 0.0174533), Vector3(-0.0174533, 0.0174533, 0.0174533), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0174533, -0.0174533, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Iris:inner_radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(49, 50.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.6, 0.65]
 }
 
 [sub_resource type="Animation" id="Animation_q6i3i"]
@@ -381,7 +427,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -390,40 +436,285 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0174533, 0.0174533, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Iris:inner_radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.6]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Camera3D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0523599, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../katena forceps/Forcep Base:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4.47935, 3.95748, 2.18203)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../katena forceps/Forcep Base:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.116973, 0.106327, 0.557775)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../katena forceps/Forcep Base/Forcep Arm R:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.0261799)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../katena forceps/Forcep Base/Forcep Arm L:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0261799)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../incision knife2/incision knife:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-9.71419, -7.06692, -5.42396)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../incision knife2/incision knife:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.25268, -1.3002, -0.0692395)]
+}
 
 [sub_resource type="Animation" id="Animation_eort7"]
 resource_name = "SceneMovement"
-tracks/0/type = "method"
+length = 100.0
+markers = [{
+"color": Color(1, 0.176471, 0.0666667, 1),
+"name": &"incision_start",
+"time": 8.28
+}]
+
+[sub_resource type="Animation" id="Animation_rjlwc"]
+resource_name = "Incision"
+length = 10.0
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("../katena forceps/Forcep Base:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.93333, 3.95897, 6.01689, 6.95173),
+"times": PackedFloat32Array(0.133333, 0.303333, 0.313334, 1.41333, 2.85333, 8.15333, 8.24333, 8.32333, 8.85333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 0.353553, 0.353553, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-4.47935, 3.95748, 2.18203), Vector3(-2.82682, 0.257759, 2.17403), Vector3(-3.00381, -0.0163252, 1.60764), Vector3(-3.039, -0.197, 1.608), Vector3(-3.039, -2.386, 1.608), Vector3(-3.039, -2.386, 1.608), Vector3(-3.039, -1.92869, 1.608), Vector3(-2.45757, -1.32725, 1.4016), Vector3(-6.41501, 2.35238, 6.56635)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../katena forceps/Forcep Base:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.303333, 0.313334, 8.24333, 8.32333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"values": [{
-"args": [],
-"method": &"flinch_eye"
-}, {
-"args": [],
-"method": &"flinch_eye"
-}, {
-"args": [],
-"method": &"flinch_eye"
-}, {
-"args": [],
-"method": &"flinch_eye"
-}]
+"update": 0,
+"values": [Vector3(0.481122, -0.038438, 0.598981), Vector3(0.605918, -0.0414558, 0.593158), Vector3(0.605918, -0.0414558, 0.593158), Vector3(0.605918, -0.0830295, 0.593158)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.15333, 2.85333, 8.15333, 8.35333),
+"transitions": PackedFloat32Array(1, 1.8025, 1.8025, 1.23114),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.4, 0.4, 0), Vector3(0.4, 0.4, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.15333, 2.85333, 8.15333, 8.35333),
+"transitions": PackedFloat32Array(1, 1.86606, 1.86606, 1.18921),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.10472, 0.0349066, 0), Vector3(-0.10472, 0.0349066, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../katena forceps/Forcep Base/Forcep Arm R:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.113334, 1.24333, 1.88333, 2.20333, 8.24333, 8.32333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0261799), Vector3(0, 0, 0.00872665), Vector3(0, 0, -0.0174533), Vector3(0, 0, -0.0174533), Vector3(0, 0, 0.0349066)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../katena forceps/Forcep Base/Forcep Arm L:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.113334, 1.24333, 1.88333, 2.20333, 8.24333, 8.32333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0261799), Vector3(0, 0, -0.00872665), Vector3(0, 0, 0.0174533), Vector3(0, 0, 0.0174533), Vector3(0, 0, -0.0349066)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Camera3D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 4, 40.022)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../incision knife2/incision knife:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.38333, 3.09333, 3.23333, 3.24333, 4.01333, 4.41333, 5.08333, 5.34333, 6.15333, 8.05334, 8.11333, 8.17333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 2.2974, 1, 1),
+"update": 0,
+"values": [Vector3(-11.0708, -6.54303, -6.3694), Vector3(-10.0293, -5.1053, -6.3694), Vector3(-11.0708, -6.54303, -6.3694), Vector3(-11.0708, -6.54303, -6.3694), Vector3(-10.559, -4.9082, -6.3694), Vector3(-10.559, -4.9082, -6.3694), Vector3(-9.85896, -4.99134, -6.3694), Vector3(-10.2222, -5.10316, -6.01984), Vector3(-10.2222, -5.10316, -6.01984), Vector3(-9.53343, -3.99417, -5.93098), Vector3(-9.65754, -4.5743, -5.93098), Vector3(-9.32801, -6.99477, -5.93098)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../incision knife2/incision knife:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(3.09333, 5.08333, 5.34333, 6.15333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.620783, -1.52702, -0.192801), Vector3(-0.620783, -1.52702, -0.192801), Vector3(-0.607978, -1.71193, 0.126144), Vector3(-0.607978, -1.71193, 0.126144)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q6i3i"]
 _data = {
 &"CamMovement": SubResource("Animation_dob7g"),
 &"EyeMovement": SubResource("Animation_tysh6"),
+&"Incision": SubResource("Animation_rjlwc"),
 &"RESET": SubResource("Animation_q6i3i"),
 &"SceneMovement": SubResource("Animation_eort7")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwh4w"]
+resource_name = "Material.003"
+cull_mode = 2
+albedo_color = Color(0.627499, 0.627439, 0.62743, 1)
+metallic = 0.8
+roughness = 0.4
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hv6me"]
+_surfaces = [{
+"aabb": AABB(-0.33, -1.895, -0.33, 0.66, 6.44224, 0.66),
+"format": 34359742465,
+"index_count": 540,
+"index_data": PackedByteArray("AAABAAIAAQADAAIABAAAAAIAAwAEAAIAAAADAAEAAAAEAAMAAwAFAAEAAwAGAAQAAwAFAAYABAAJAAAAAQAIAAAAAAAJAAgABAAOAAkABAAGAA4ACQAGAA4AAQAFAAcAAQAHAAgABgAHAAUABwAJAAgACQAHAAYAIwAFAAcAJAAJAA4AIwAKAAUACgAGAAUAJQAjAAcAJQAHAAgAJQAKACMAJAAMAAkADAAIAAkADAAKACUACwAlAAgADAAlAAsADAALAAgAJgAMACQAJgAkAA4ACgAMACYAJgAOAAYACgANAAYADQAmAAYACgAmAA0AJwASACgAKQAoABIAJwAqABIAKgApABIAKwAnACgALAAqACcADwAnACsADwAsACcAKwAoABAALAAtACoALgAPACsALgAsAA8ALwArABAALgArAC8AKAAwABAALwAQADAAKQAwACgALAAxAC0ALgAxACwALQAyACoAKgAyACkALQAxADIAMgARACkAMgAzABEAMQAzADIAMwA0ABEANAApABEAMQATADMAMwA1ADQAEwA1ADMANQAWADQAMQA2ABMAEwA2ADUAMQA3ADYALgA3ADEANgA4ADUANQA4ABYANgA5ADgANgA3ADkAOAA6ABYAOgA0ABYAOgApADQAOQA7ADgAOAA7ADoAOQA3ADsAOwAYADoAOwA8ABgANwA8ADsAPQA6ABgAPAA9ABgAPgApADoAPgA6AD0APAA/AD0APgA9ABsAPwAbAD0AFwA/ADwANwAXADwAPwBAABsAQAA+ABsAFwBBAD8AQQBAAD8ANwBBABcAQQAaAEAANwBCAEEAQQBCABoAGgBDAEAAQABDAD4AGgBCAEMAQwAZAD4AQwBEABkAQgBEAEMARQA+ABkARABFABkAQgAhAEQARABGAEUAIQBGAEQARgAiAEUAQgBHACEAIQBHAEYANwBIAEIAQgBIAEcASQBFACIASQA+AEUARgBKACIARwBKAEYASgBJACIARwAcAEoARwBIABwAHABLAEoAHABIAEsASgBLAEkASwAgAEkATAA+AEkATAApAD4ATQBJACAATABJAE0ASwBOACAATgBNACAASABOAEsATABNAB4ATgBPAE0ATwAeAE0AHwBPAE4ASAAfAE4ATwBQAB4AUABMAB4AHwBRAE8AUQBQAE8ASABRAB8AUQAdAFAASABSAFEAUQBSAB0AHQBTAFAAUABTAEwAHQBSAFMAUwAVAEwAUwBUABUAUgBUAFMAVQBMABUAVABVABUAUgBWAFQAMABMAFUAKQBMADAAMABVAFcAVABYAFUAVgBYAFQAWABXAFUAWQAwAFcAWABZAFcAWQAvADAAVgBaAFgAWgBZAFgAUgBaAFYAFAAvAFkAWgAUAFkAFAAuAC8AWgAuABQAUgAuAFoASAAuAFIANwAuAEgA"),
+"lods": [0.0732901, PackedByteArray("AAABAAIAAQADAAIABAAAAAIAAwAEAAIAAAADAAEAAAAEAAMAAwAFAAEAAwAGAAQAAwAFAAYAAQAFAAcABgAHAAUAAQAIAAAAAQAHAAgABAAJAAAAAAAJAAgACQAHAAYACgAFAAcABwAJAAgACgAHAAgACgAGAAUACwAKAAgADAALAAgADAAKAAsADAAIAAkACgAMAA0ACgANAAYADQAMAAYADAAOAAYADAAJAA4ACQAGAA4ABAAGAA4ABAAOAAkAEQAQABIAEAAPABIADwATABIAEwARABIAFAAPABAAFAATAA8AEQAVABAAFAAQABUAEQATABYAFAAXABMAEwAXABYAGAARABYAFwAYABYAGQARABgAFQARABkAFwAaABgAGQAYABsAGAAaABsAGgAZABsAFwAUABwAFwAcABoAHQAUABUAHAAUAB0AHQAVAB4AHwAdAB4AHAAdAB8AFQAgAB4AHwAeACAAFQAZACAAHAAfACAAGgAhABkAGgAcACEAIQAcABkAGQAcACIAHAAgACIAIAAZACIA"), 0.47473, PackedByteArray("AAABAAIAAQADAAIABAAAAAIAAwAEAAIAAAADAAEAAAAEAAMAAwAFAAEAAwAGAAQAAwAFAAYAAQAFAAcABgAHAAUAAQAIAAAAAQAHAAgABAAJAAAAAAAJAAgACQAHAAYACgAFAAcABwAJAAgACgAHAAgACgAGAAUACwAKAAgADAALAAgADAAKAAsADAAIAAkACgAMAA0ACgANAAYADQAMAAYADAAOAAYADAAJAA4ACQAGAA4ABAAGAA4ABAAOAAkADwAQABAADwAPABAA")],
+"name": "Material.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 91,
+"vertex_data": PackedByteArray("AAAAAASFe0C7Jh++dBppPQSFe0AAAACAAAAAAPmCkUAAAACAAAAAAASFe0C7Jh8+dBppvQSFe0AAAACA3evRPMy7ZEDjUo893evRvMy7ZEDjUo89028UPcy7ZEAAAACA3evRPMy7ZEDjUo+93evRvMy7ZEDjUo+951KPPX5l8j/nUo898R3Mrn5l8j/GsMq951KPvX5l8j/nUo+98R3Mrn5l8j/GsMo9028Uvcy7ZEAAAACAAAAAAF6P8r/B9ai+AAAAAFyP8j/B9ai+2VKSPlyP8j/B9Si+wfUoPlyP8j/ZUpK+2VKSPl6P8r/B9Si+wfUovl6P8r/ZUpK+2VKSvlyP8j/B9Si+wfWoPlyP8j8AAACA2VKSPl6P8r/B9Sg+2VKSPlyP8j/B9Sg+AAAAAFyP8j/B9ag+wfUoPl6P8r/ZUpI+wfUoPlyP8j/ZUpI+wfUovl6P8r/ZUpI+wfWovl6P8r8AAACAwfWovlyP8j8AAACA2VKSvl6P8r/B9Sg+2VKSvlyP8j/B9Sg+AAAAAF6P8r/B9ag+wfUovlyP8j/ZUpI+xrDKPX5l8j8AAACAxrDKvX5l8j8AAACA51KPPX5l8j/nUo+951KPvX5l8j/nUo89wfWoPQAAALVOpJ2+wfWoPVyP8j9OpJ2+uc1mPlyP8j+5zWa+wfUoPgAAALXZUpK+AAAAAAAAAADB9ai+wfWoPV6P8r9OpJ2+wfUoPl6P8r/ZUpK+wfWovV6P8r9OpJ2+wfWovQAAALVOpJ2+wfWovVyP8j9OpJ2+uc1mPl6P8r+5zWa+uc1mPgAAALW5zWa+2VKSPgAAALXB9Si+TqSdPlyP8j/B9ai9TqSdPgAAALXB9ai9TqSdPl6P8r/B9ai9TqSdPl6P8r/B9ag9wfWoPgAAALUAAACAwfWoPl6P8r8AAACATqSdPlyP8j/B9ag9TqSdPgAAALXB9ag92VKSPgAAALXB9Sg+uc1mPlyP8j+5zWY+wfWoPVyP8j9OpJ0+uc1mPgAAALW5zWY+wfUoPgAAALXZUpI+uc1mPl6P8r+5zWY+wfWoPV6P8r9OpJ0+wfWoPQAAALVOpJ0+AAAAAAAAALXB9ag+wfWovVyP8j9OpJ0+wfWovQAAALVOpJ0+wfWovV6P8r9OpJ0+uc1mvl6P8r+5zWY+uc1mvlyP8j+5zWY+wfUovgAAALXZUpI+uc1mvgAAALW5zWY+TqSdvlyP8j/B9ai9TqSdvlyP8j/B9ag92VKSvgAAALXB9Sg+TqSdvgAAALXB9ag9wfWovgAAALUAAACATqSdvl6P8r/B9ag9TqSdvl6P8r/B9ai9TqSdvgAAALXB9ai92VKSvgAAALXB9Si+uc1mvlyP8j+5zWa+2VKSvl6P8r/B9Si+wfUovlyP8j/ZUpK+uc1mvgAAALW5zWa+wfUovgAAALXZUpK+uc1mvl6P8r+5zWa+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_usles"]
+resource_name = "incision knife_Cone"
+_surfaces = [{
+"aabb": AABB(-0.33, -1.895, -0.33, 0.66, 6.44224, 0.66),
+"attribute_data": PackedByteArray("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"),
+"format": 34359742487,
+"index_count": 540,
+"index_data": PackedByteArray("AAABAAIAYgADAGMABAAFAAYABAAHAAUAZABlAGYACQALAAoAEQBnABMAaAAUAGkAaABqABQAagAVABQAagASABUAFgAXABgAFgBrABcAGQBsAG0AbgAcABsAbgBvABwAbwAdABwAbwAaAB0AHgAfACAAHwAeACEAIQAeACIAHwAhACMAJAAlACYAJAAnACUAKABwACoAKAApAHAAcAApAHEAKQAoAHIAcgAoAHMAKQByACsALAAtAC4ALgAtAC8ALgAvADAALgAwADEACAAMAA0ADQAMAA4ADQAOAA8ADQAPABAAMgAzADQANQA2ADcAdABhAHUAdgB1ADoAdgB0AHUAOwB0AHYAOwB3AHQAdAB4AGEAdwB4AHQAeAB5AGEAdwB6AHgAeAB7AHkAegB7AHgAewBgAHkAegB8AHsAewB9AGAAfAB9AHsAfQB+AGAAfABfAH0AfQB/AH4AXwB/AH0AfwBeAH4AXwCAAH8AfwCBAF4AgACBAH8AgQCCAF4AgACDAIEAgQCEAIIAgwCEAIEAhABcAIIAgwCFAIQAhACGAFwAhQCGAIQAhgCHAFwAhQBdAIYAhgCIAIcAXQCIAIYAiABbAIcAXQCJAIgAiACKAFsAiQCKAIgAigCLAFsAiQBaAIoAigCMAIsAWgCMAIoAjABYAIsAWgCNAIwAjACOAFgAjQCOAIwAjgCPAFgAjQBZAI4AjgCQAI8AWQCQAI4AkABXAI8AWQCRAJAAkACSAFcAkQCSAJAAkgCTAFcAkQBWAJIAkgCUAJMAVgCUAJIAlABVAJMAVgCVAJQAlACWAFUAlQCWAJQAlgCXAFUAlQBUAJYAlgCYAJcAVACYAJYAmABTAJcAVACZAJgAmACaAFMAmQCaAJgAmgCbAFMAmQBSAJoAmgCcAJsAUgCcAJoAnABRAJsAUgCdAJwAnACeAFEAnQCeAJwAngCfAFEAnQCgAJ4AngChAJ8AoAChAJ4AoQCiAJ8AoACjAKEAoQCkAKIAowCkAKEApAClAKIAowBQAKQApACmAKUAUACmAKQApgA5AKUAUACnAKYApgCoADkApwCoAKYApwA4AKgAqQCqAD4AqgCrAD0AqQCrAKoAqwCsAK0AqwCuAKwAqQCuAKsArACuAD8ArwCpADwAsACpAK8AsACvAEUArgCpALEAsQCpALAAsgCwAEQAsQCwALIAsQCyAEYArgCzAEEArgC0ALMArgCxALQAswC0AEAAtACxALUAtQCxAEIAtAC1AEMAtgC3AEkAtwC4ALkAtgC4ALcAuAC6AEgAuAC7ALoAtgC7ALgAugC7ALwAvQC2AEcAvgC2AL0AvgC9AL8AuwC2AMAAwAC2AL4AwQC+AEwAwAC+AMEAwADBAE0AuwDCAEoAuwDDAMIAuwDAAMMAwgDDAE4AwwDAAMQAxADAAEsAwwDEAE8A"),
+"lods": [0.0732901, PackedByteArray("AAABAAIAAQADAAIABAAFAAYABAAHAAUACAAJAAoACQALAAoACAAMAA0ADQAMAA4ADQAOAA8ADQAPABAAEQASABMAEgAUABMAEgAVABQAFgAXABgAFgAZABcAGQAaABsAGgAcABsAGgAdABwAHgAfACAAHwAeACEAIQAeACIAHwAhACMAJAAlACYAJAAnACUAKAApACoAKQAoACsALAAtAC4ALgAtAC8ALgAvADAALgAwADEAMgAzADQANQA2ADcAPAA9AD4APAA/AD0APwBAAEEAPwBCAEAAPwA8AEIAQABCAEMAQgA8AEQARAA8AEUAQgBEAEYARwBIAEkARwBKAEgASgBHAEsASwBHAEwASwBMAE0ASgBLAE4ATgBLAE8AUAA4ADkAUAA5AFEAUgBQAFEAUgBRAFMAVABSAFMAVABTAFUAVgBUAFUAVgBVAFcAWABWAFcAWQBWAFgAWgBZAFgAWgBYAFsAXABaAFsAXQBaAFwAXQBcAF4AXwBdAF4AYABfAF4AXwBgAGEAOwBfAGEAOgA7AGEA"), 0.47473, PackedByteArray("AAABAAIAAQADAAIABAAFAAYABAAHAAUACAAJAAoACQALAAoACAAMAA0ADQAMAA4ADQAOAA8ADQAPABAAEQASABMAEgAUABMAEgAVABQAFgAXABgAFgAZABcAGQAaABsAGgAcABsAGgAdABwAHgAfACAAHwAeACEAIQAeACIAHwAhACMAJAAlACYAJAAnACUAKAApACoAKQAoACsALAAtAC4ALgAtAC8ALgAvADAALgAwADEAMgAzADQANQA2ADcAOAA5ADoAOwA4ADoA")],
+"material": SubResource("StandardMaterial3D_rwh4w"),
+"name": "Material.003",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 197,
+"vertex_data": PackedByteArray("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/38AAP///z//fwAA////P2Ijh37///8/RQ+YepCJ57WuAlB9d4AQtQcH+HhJgee0ZwW6cP///794AZ1c////v/9/OGf///8//384Z////z//fzhn////PzjnAABybd2TOOcAAHJt3ZM45wAAcm3dk/////8AAP+//////wAA/7//////AAD/v/////8AAP+//3////7//7//f///////v/9///////+//3///////7//f////v//v/9///////+//3///////7//f///////v/9///////+//3///////7//f////v//v/9/AAD+//8//38AAP7//z//fwAA////P/9/AAD///8//38AAP///z//fwAA////P/9/AAD+//8//38AAP7//z//fwAA////PwAAJdHZLv+/AADZriVR/78AAP9//3//vwAA/3//f/+/2S7/f9mu/7/ZLv9/2a7/vyVR/38l0f+/JVH/fyXR/7//f/9/////v/9//3////+/2a7/f///bNfZrv9///9s1yXR/3///5LoJdH/f///kuj///9/////////2a4AAJLo///ZrgAAkuj//yXRAABs18LXGIjOimeFwtcYiM6KZ4U8KBiIz4qX+jwoGIjPipf6PCgYiM+Kl/oD/8raAAC+0ub8o55ZAOrx5vyjnmUAD44J/PSDAwD+/22YYoHF/2/Mylr6gIDa/7/KWvqAgNr/v6MeGIMnnCzA9QP0g/9/AcD/fwAA////P/9/AAD///8//38AAP///z//fwAA////P///8uQAAIXN///y5AAAhc3/////AAD/v///8uQAAIXN//8l0QAAbNf///+/AAD/3///JdEAAGzX////vwAA/9////+/AAD/3///2a4AAJLo//8LmwAAePL//wubAAB48v//C5sAAHjy////f//////y5P9///948v///3//////8uT/f///ePLy5P9///948iXR/3///5Lo/7//f////9//v/9/////3/+//3/////f2a7/f///bNcLm/9///+FzQub/3///4XNC5v/f///hc3/f/9/////v/Nk/3/y5P+/82T/f/Lk/7/zZP9/8uT/vyVR/38l0f+//z//f/+//7//P/9//7//v/8//3//v/+/2S7/f9mu/78MG/9/C5v/vwwb/38Lm/+/DBv/fwub/78AAP9//3//vwAAC5vzZP+/AAALm/Nk/78AAAub82T/vwAA2a4lUf+/AAD/v/8//78AANmuJVH/vwAA/7//P/+/AAAl0dku/78AAP+//z//vwAAJdHZLv+/AADy5Awb/78AAPLkDBv/vwAA8uQMG/+//////wAA/7//f///////v/9///////+//3///////7//f///////v/9////+//+//3///////7//f////v//v/9///////+//3///////7//f///////v/9////+//+//3////7//7//f///////v/9/AAD///8//38AAP///z//fwAA/v//P/9/AAD///8//38AAP///z//fwAA////P/9/AAD///8//38AAP///z//fwAA////P/9/AAD///8//38AAP///z//fwAA////P/9/AAD///8//38AAP///z//fwAA////Pw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_hv6me")
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_66br4")
@@ -443,7 +734,7 @@ light_angular_distance = 1.49
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.939295, 40.0224)
+transform = Transform3D(1, 0, 0, 0, 0.99863, 0.052336, 0, -0.052336, 0.99863, 0, 0.939295, 40.0224)
 environment = SubResource("Environment_7mckg")
 fov = 44.5
 script = ExtResource("4")
@@ -456,6 +747,7 @@ spot_range = 56.5557
 spot_angle = 15.2202
 
 [node name="Eyeball" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.999848, -0.000304587, 0.0174497, 0, 0.999848, 0.0174524, -0.0174524, -0.0174498, 0.999695, 0, 0, 0)
 mesh = ExtResource("1")
 material = SubResource("StandardMaterial3D_7mckg")
 script = ExtResource("4_eort7")
@@ -492,17 +784,17 @@ skeleton = NodePath("")
 transform = Transform3D(-3, -4.52987e-07, 0, 4.52987e-07, -3, 0, 0, 0, 3, 5.6398, -7.15731, 14.3108)
 
 [node name="Forcep Base" type="MeshInstance3D" parent="katena forceps"]
-transform = Transform3D(1.52534, 2.84217e-14, 0, -2.84217e-14, 1.52534, 0, 0, 0, 1.52534, 12.2986, 1.8349, 2.18203)
+transform = Transform3D(1.27684, -0.818833, 0.160773, 0.801846, 1.28531, 0.178017, -0.231036, -0.0645001, 1.50636, -4.47935, 3.95748, 2.18203)
 mesh = SubResource("ArrayMesh_xy6hy")
 skeleton = NodePath("")
 
 [node name="Forcep Arm L" type="MeshInstance3D" parent="katena forceps/Forcep Base"]
-transform = Transform3D(0.167407, 0, 0, 0, 0.743967, 0, 0, 0, 0.743967, -0.000775523, -0.255193, 0)
+transform = Transform3D(0.16735, -0.0194748, 0, 0.0043822, 0.743712, 0, 0, 0, 0.743967, -0.000775523, -0.255193, 0)
 mesh = SubResource("ArrayMesh_dgps7")
 skeleton = NodePath("")
 
 [node name="Forcep Arm R" type="MeshInstance3D" parent="katena forceps/Forcep Base"]
-transform = Transform3D(0.167407, 0, 0, 0, 0.743967, 0, 0, 0, 0.743967, -0.000775523, -0.255193, 0)
+transform = Transform3D(0.16735, 0.0194748, 0, -0.0043822, 0.743712, 0, 0, 0, 0.743967, -0.000775523, -0.255193, 0)
 mesh = SubResource("ArrayMesh_iskx2")
 skeleton = NodePath("")
 
@@ -511,3 +803,11 @@ root_node = NodePath("../Eyeball")
 libraries = {
 &"": SubResource("AnimationLibrary_q6i3i")
 }
+
+[node name="incision knife2" type="Node3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 21, 0, 30)
+
+[node name="incision knife" type="MeshInstance3D" parent="incision knife2"]
+transform = Transform3D(0.25, 0.258819, -0.933013, -0.0669873, 0.965926, 0.25, 0.965926, -7.45058e-09, 0.258819, -9.71419, -7.06692, -5.42396)
+mesh = SubResource("ArrayMesh_usles")
+skeleton = NodePath("")

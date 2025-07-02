@@ -16,6 +16,11 @@ config/features=PackedStringArray("4.4")
 boot_splash/show_image=false
 config/icon="res://icon.png"
 
+[editor]
+
+movie_writer/mjpeg_quality=1.0
+movie_writer/movie_file="C:/Users/user/Documents/Uni - Medizintechnik/Master/Sommersemester 2025/Praktikum Visual Computing/godot_cataract2000_incision.avi"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

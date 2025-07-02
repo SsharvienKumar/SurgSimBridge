@@ -5,7 +5,8 @@ var t = 0.0
 var dilating = false
 
 func _ready():
-	get_node("AnimationPlayer").play("EyeMovement")
+	get_node("AnimationPlayer").play("Incision")
+	print("done")
 
 func _process(delta: float) -> void:
 	if dilating:
