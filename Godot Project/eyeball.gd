@@ -13,6 +13,7 @@ func flinch_eye(offset := Vector3(0, -1, 0), return_delay := 0.1):
 	rotation_degrees += offset              # Apply a quick jolt
 	await get_tree().create_timer(return_delay).timeout  # Wait a short time
 	rotation_degrees = original_rotation      # Snap back to normal
+	
 
 #func move_in_direction(target_rot: Vector3, speed := 5.0):
 	#print("move triggered")

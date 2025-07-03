@@ -1,8 +1,8 @@
-[gd_scene load_steps=41 format=4 uid="uid://u08p6pa83083"]
+[gd_scene load_steps=44 format=4 uid="uid://u08p6pa83083"]
 
-[ext_resource type="ArrayMesh" uid="uid://d0e7420m8jp2m" path="res://eye_white.obj" id="1"]
 [ext_resource type="Script" uid="uid://c0s4u2xuyd4pe" path="res://scene.gd" id="1_66br4"]
 [ext_resource type="ArrayMesh" uid="uid://c8xy872nomd6a" path="res://eyeball_sclera.obj" id="2"]
+[ext_resource type="ArrayMesh" uid="uid://dx67bxc7nv3jg" path="res://eyewhite.obj" id="3_eort7"]
 [ext_resource type="Script" uid="uid://dxfvyw13foe68" path="res://Camera.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://dwqlofnh8tr63" path="res://iris_texture.png" id="4_66br4"]
 [ext_resource type="Script" uid="uid://cp056tdkcl20g" path="res://eyeball.gd" id="4_eort7"]
@@ -42,21 +42,6 @@ subsurf_scatter_transmittance_enabled = true
 uv1_scale = Vector3(0.01, 0.01, 0.01)
 uv1_offset = Vector3(0.5, 0.5, 0)
 uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dob7g"]
-albedo_texture = ExtResource("4_66br4")
-normal_enabled = true
-uv1_offset = Vector3(0.1, 0.1, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eort7"]
-transparency = 1
-cull_mode = 1
-albedo_color = Color(0.28, 0.28, 0.28, 0.498039)
-normal_scale = -16.0
-rim_enabled = true
-clearcoat_enabled = true
-anisotropy = 1.0
-subsurf_scatter_strength = 0.45
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66br4"]
 transparency = 1
@@ -152,6 +137,21 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f74h3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dob7g"]
+albedo_texture = ExtResource("4_66br4")
+normal_enabled = true
+uv1_offset = Vector3(0.1, 0.1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eort7"]
+transparency = 1
+cull_mode = 1
+albedo_color = Color(0.28, 0.28, 0.28, 0.498039)
+normal_scale = -16.0
+rim_enabled = true
+clearcoat_enabled = true
+anisotropy = 1.0
+subsurf_scatter_strength = 0.45
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcy6n"]
 resource_name = "Material.002"
@@ -380,10 +380,10 @@ tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(10.35, 11.0048, 16.3, 16.5, 23.4, 23.45, 23.55, 24.05, 24.1, 25.48, 28.5, 30),
-"transitions": PackedFloat32Array(1, 1.8025, 0.5, 1.23114, 1, 1, 1, 1, 1, 1, 0.392292, 1),
+"times": PackedFloat32Array(17.1, 23.4, 23.45, 23.55, 24.05, 24.1, 25.48, 28.5, 30),
+"transitions": PackedFloat32Array(1.23114, 1, 1, 1, 1, 1, 1, 0.392292, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.2, 0.2, 0), Vector3(0.2, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0.2, 0), Vector3(0.15, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.2, 0.2, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0.2, 0), Vector3(0, 0.2, 0), Vector3(0.15, 0.2, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.2, 0.2, 0), Vector3(0, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -392,10 +392,10 @@ tracks/2/path = NodePath(".:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(10.35, 11.0048, 16.3, 16.5, 23.4, 23.45, 23.55, 24.05, 24.1, 25.48, 28.5, 30),
-"transitions": PackedFloat32Array(1, 1.86606, 0.63728, 1.18921, 1, 2.37841, 2.37841, 1, 1, 1, 0.420448, 1),
+"times": PackedFloat32Array(17.1, 23.4, 23.45, 23.55, 24.05, 24.1, 25.48, 28.5, 30),
+"transitions": PackedFloat32Array(1.18921, 1, 2.37841, 2.37841, 1, 1, 1, 0.420448, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.0174533, 0.0174533, 0), Vector3(-0.0174533, 0.0174533, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0174533, 0, 0.0174533), Vector3(-0.0174533, 0, 0.0174533), Vector3(-0.0174533, 0.0174533, 0.0174533), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0174533, -0.0174533, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0174533, 0, 0.0174533), Vector3(-0.0174533, 0, 0.0174533), Vector3(-0.0174533, 0.0174533, 0.0174533), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.0174533, -0.0174533, 0), Vector3(0, 0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -408,6 +408,118 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.6, 0.65]
+}
+
+[sub_resource type="Animation" id="Animation_rjlwc"]
+resource_name = "Incision"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../katena forceps/Forcep Base:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 0.303333, 0.313334, 1.41333, 2.85333, 8.15333, 8.24333, 8.32333, 8.85333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 0.353553, 0.353553, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-4.47935, 3.95748, 2.18203), Vector3(-2.82682, 0.257759, 2.17403), Vector3(-3.00381, -0.0163252, 1.60764), Vector3(-3.039, -0.197, 1.608), Vector3(-3.039, -2.386, 1.608), Vector3(-3.039, -2.386, 1.608), Vector3(-3.039, -1.92869, 1.608), Vector3(-2.45757, -1.32725, 1.4016), Vector3(-6.41501, 2.35238, 6.56635)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../katena forceps/Forcep Base:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.303333, 0.313334, 8.24333, 8.32333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.481122, -0.038438, 0.598981), Vector3(0.605918, -0.0414558, 0.593158), Vector3(0.605918, -0.0414558, 0.593158), Vector3(0.605918, -0.0830295, 0.593158)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.15333, 2.85333, 8.15333, 8.35333),
+"transitions": PackedFloat32Array(1, 1.8025, 1.8025, 1.23114),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.4, 0.4, 0), Vector3(0.4, 0.4, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.15333, 2.85333, 8.15333, 8.35333),
+"transitions": PackedFloat32Array(1, 1.86606, 1.86606, 1.18921),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.10472, 0.0349066, 0), Vector3(-0.10472, 0.0349066, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../katena forceps/Forcep Base/Forcep Arm R:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.113334, 1.24333, 1.88333, 2.20333, 8.24333, 8.32333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0261799), Vector3(0, 0, 0.00872665), Vector3(0, 0, -0.0174533), Vector3(0, 0, -0.0174533), Vector3(0, 0, 0.0349066)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../katena forceps/Forcep Base/Forcep Arm L:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.113334, 1.24333, 1.88333, 2.20333, 8.24333, 8.32333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0261799), Vector3(0, 0, -0.00872665), Vector3(0, 0, 0.0174533), Vector3(0, 0, 0.0174533), Vector3(0, 0, -0.0349066)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Camera3D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 4, 40.022)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../incision knife2/incision knife:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.38333, 3.09333, 3.23333, 3.24333, 4.01333, 4.41333, 5.08333, 5.34333, 6.15333, 8.05334, 8.11333, 8.17333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 2.2974, 1, 1),
+"update": 0,
+"values": [Vector3(-11.0708, -6.54303, -6.3694), Vector3(-10.0293, -5.1053, -6.3694), Vector3(-11.0708, -6.54303, -6.3694), Vector3(-11.0708, -6.54303, -6.3694), Vector3(-10.559, -4.9082, -6.3694), Vector3(-10.559, -4.9082, -6.3694), Vector3(-9.85896, -4.99134, -6.3694), Vector3(-10.2222, -5.10316, -6.01984), Vector3(-10.2222, -5.10316, -6.01984), Vector3(-9.53343, -3.99417, -5.93098), Vector3(-9.65754, -4.5743, -5.93098), Vector3(-9.32801, -6.99477, -5.93098)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../incision knife2/incision knife:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(3.09333, 5.08333, 5.34333, 6.15333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.620783, -1.52702, -0.192801), Vector3(-0.620783, -1.52702, -0.192801), Vector3(-0.607978, -1.71193, 0.126144), Vector3(-0.607978, -1.71193, 0.126144)]
 }
 
 [sub_resource type="Animation" id="Animation_q6i3i"]
@@ -545,6 +657,66 @@ tracks/10/keys = {
 "values": [Vector3(-0.25268, -1.3002, -0.0692395)]
 }
 
+[sub_resource type="Animation" id="Animation_xcudr"]
+resource_name = "Saccades"
+length = 60.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.55, 3.5, 4.45, 5.52, 7.1, 8.15, 10.23, 12.06, 14.02, 18.58, 20.12, 34.52, 36.42, 39.04, 58.9642),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [Vector3(-1, 0, 1)],
+"method": &"flinch_eye"
+}, {
+"args": [Vector3(-1, -1, 0)],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [Vector3(0, 0, 1)],
+"method": &"flinch_eye"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_eort7"]
 resource_name = "SceneMovement"
 length = 100.0
@@ -554,124 +726,13 @@ markers = [{
 "time": 8.28
 }]
 
-[sub_resource type="Animation" id="Animation_rjlwc"]
-resource_name = "Incision"
-length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../katena forceps/Forcep Base:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.133333, 0.303333, 0.313334, 1.41333, 2.85333, 8.15333, 8.24333, 8.32333, 8.85333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 0.353553, 0.353553, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-4.47935, 3.95748, 2.18203), Vector3(-2.82682, 0.257759, 2.17403), Vector3(-3.00381, -0.0163252, 1.60764), Vector3(-3.039, -0.197, 1.608), Vector3(-3.039, -2.386, 1.608), Vector3(-3.039, -2.386, 1.608), Vector3(-3.039, -1.92869, 1.608), Vector3(-2.45757, -1.32725, 1.4016), Vector3(-6.41501, 2.35238, 6.56635)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../katena forceps/Forcep Base:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.303333, 0.313334, 8.24333, 8.32333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.481122, -0.038438, 0.598981), Vector3(0.605918, -0.0414558, 0.593158), Vector3(0.605918, -0.0414558, 0.593158), Vector3(0.605918, -0.0830295, 0.593158)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2.15333, 2.85333, 8.15333, 8.35333),
-"transitions": PackedFloat32Array(1, 1.8025, 1.8025, 1.23114),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.4, 0.4, 0), Vector3(0.4, 0.4, 0), Vector3(0, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(2.15333, 2.85333, 8.15333, 8.35333),
-"transitions": PackedFloat32Array(1, 1.86606, 1.86606, 1.18921),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.10472, 0.0349066, 0), Vector3(-0.10472, 0.0349066, 0), Vector3(0, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../katena forceps/Forcep Base/Forcep Arm R:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.113334, 1.24333, 1.88333, 2.20333, 8.24333, 8.32333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0261799), Vector3(0, 0, 0.00872665), Vector3(0, 0, -0.0174533), Vector3(0, 0, -0.0174533), Vector3(0, 0, 0.0349066)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../katena forceps/Forcep Base/Forcep Arm L:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.113334, 1.24333, 1.88333, 2.20333, 8.24333, 8.32333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0261799), Vector3(0, 0, -0.00872665), Vector3(0, 0, 0.0174533), Vector3(0, 0, 0.0174533), Vector3(0, 0, -0.0349066)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Camera3D:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 4, 40.022)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../incision knife2/incision knife:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(2.38333, 3.09333, 3.23333, 3.24333, 4.01333, 4.41333, 5.08333, 5.34333, 6.15333, 8.05334, 8.11333, 8.17333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 2.2974, 1, 1),
-"update": 0,
-"values": [Vector3(-11.0708, -6.54303, -6.3694), Vector3(-10.0293, -5.1053, -6.3694), Vector3(-11.0708, -6.54303, -6.3694), Vector3(-11.0708, -6.54303, -6.3694), Vector3(-10.559, -4.9082, -6.3694), Vector3(-10.559, -4.9082, -6.3694), Vector3(-9.85896, -4.99134, -6.3694), Vector3(-10.2222, -5.10316, -6.01984), Vector3(-10.2222, -5.10316, -6.01984), Vector3(-9.53343, -3.99417, -5.93098), Vector3(-9.65754, -4.5743, -5.93098), Vector3(-9.32801, -6.99477, -5.93098)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../incision knife2/incision knife:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(3.09333, 5.08333, 5.34333, 6.15333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.620783, -1.52702, -0.192801), Vector3(-0.620783, -1.52702, -0.192801), Vector3(-0.607978, -1.71193, 0.126144), Vector3(-0.607978, -1.71193, 0.126144)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q6i3i"]
 _data = {
 &"CamMovement": SubResource("Animation_dob7g"),
 &"EyeMovement": SubResource("Animation_tysh6"),
 &"Incision": SubResource("Animation_rjlwc"),
 &"RESET": SubResource("Animation_q6i3i"),
+&"Saccades": SubResource("Animation_xcudr"),
 &"SceneMovement": SubResource("Animation_eort7")
 }
 
@@ -716,6 +777,85 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hv6me")
 
+[sub_resource type="Animation" id="Animation_3hyav"]
+resource_name = "Saccades"
+length = 60.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Eyeball")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.55, 3.5, 4.45, 5.52, 7.1, 8.15, 10.23, 12.06, 14.02, 18.58, 20.12, 34.52, 36.42, 39.04, 58.9642),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [Vector3(-1, 0, 1)],
+"method": &"flinch_eye"
+}, {
+"args": [Vector3(-1, -1, 0)],
+"method": &"flinch_eye"
+}, {
+"args": [],
+"method": &"flinch_eye"
+}, {
+"args": [Vector3(0, 0, 1)],
+"method": &"flinch_eye"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(8.28),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_incision_anim"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g2wh3"]
+_data = {
+&"Saccades": SubResource("Animation_3hyav")
+}
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_66br4")
 
@@ -726,11 +866,13 @@ environment = SubResource("Environment_tysh6")
 transform = Transform3D(-0.0851432, 0.93652, -0.340119, -0.890069, 0.0819279, 0.448404, 0.447804, 0.340907, 0.826592, 0.603283, 0.312176, 326.909)
 light_energy = 0.2
 light_angular_distance = 1.72
+light_specular = 0.0
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.21067, 0.977168, -0.0275985, -0.91497, -0.187164, 0.35749, 0.344162, 0.100564, 0.933509, 17.8834, -0.0624013, 326.66)
 light_energy = 0.2
 light_angular_distance = 1.49
+light_specular = 0.0
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -747,26 +889,13 @@ spot_range = 56.5557
 spot_angle = 15.2202
 
 [node name="Eyeball" type="CSGMesh3D" parent="."]
-transform = Transform3D(0.999848, -0.000304587, 0.0174497, 0, 0.999848, 0.0174524, -0.0174524, -0.0174498, 0.999695, 0, 0, 0)
-mesh = ExtResource("1")
+transform = Transform3D(1.19982, -0.000365504, 0.0209397, 0, 1.19982, 0.0209429, -0.0209429, -0.0209397, 1.19963, 0, 0, 0)
+mesh = ExtResource("3_eort7")
 material = SubResource("StandardMaterial3D_7mckg")
 script = ExtResource("4_eort7")
 
-[node name="Iris" type="CSGTorus3D" parent="Eyeball"]
-transform = Transform3D(6.63709, -0.00035023, 0.0109815, 0.0110305, 0.0128492, -6.63615, 0.00283928, 0.768786, 0.110919, 0, 0.119202, 10.6516)
-inner_radius = 0.6
-outer_radius = 0.905929
-sides = 60
-ring_sides = 60
-material = SubResource("StandardMaterial3D_dob7g")
-
-[node name="Cornea" type="CSGMesh3D" parent="Eyeball"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.403319)
-mesh = ExtResource("2")
-material = SubResource("StandardMaterial3D_eort7")
-
 [node name="capsuleandlens" type="Node3D" parent="Eyeball"]
-transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 7.49294)
+transform = Transform3D(3.20833, 0, 0, 0, 3.20833, 0, 0, 0, 3.20833, 0, 0, 7.79621)
 
 [node name="Lens" type="MeshInstance3D" parent="Eyeball/capsuleandlens"]
 transform = Transform3D(0.649112, 0, 0, 0, 0, 0.649112, 0, -0.649112, 0, 0, 0, 0)
@@ -780,21 +909,34 @@ material_override = SubResource("StandardMaterial3D_tysh6")
 mesh = SubResource("ArrayMesh_8iywq")
 skeleton = NodePath("")
 
+[node name="Iris" type="CSGTorus3D" parent="Eyeball"]
+transform = Transform3D(5.03499, -0.000265551, 0.00678517, 0.0083697, 0.00974476, -4.09942, 0.00215381, 0.582918, 0.0685339, 0, 0.15, 11.074)
+inner_radius = 0.6
+outer_radius = 0.905929
+sides = 60
+ring_sides = 60
+material = SubResource("StandardMaterial3D_dob7g")
+
+[node name="Cornea" type="CSGMesh3D" parent="Eyeball/Iris"]
+transform = Transform3D(0.150943, 0.000234736, 6.51642e-05, -0.000593453, 0.020373, 1.31467, 0.000267509, -0.151202, 0.00272688, -0.000669047, -13.3929, -0.0244112)
+mesh = ExtResource("2")
+material = SubResource("StandardMaterial3D_eort7")
+
 [node name="katena forceps" type="Node3D" parent="."]
 transform = Transform3D(-3, -4.52987e-07, 0, 4.52987e-07, -3, 0, 0, 0, 3, 5.6398, -7.15731, 14.3108)
 
 [node name="Forcep Base" type="MeshInstance3D" parent="katena forceps"]
-transform = Transform3D(1.27684, -0.818833, 0.160773, 0.801846, 1.28531, 0.178017, -0.231036, -0.0645001, 1.50636, -4.47935, 3.95748, 2.18203)
+transform = Transform3D(1.27684, -0.818833, 0.160773, 0.801843, 1.28531, 0.178017, -0.231036, -0.0645002, 1.50636, -4.47935, 3.95748, 2.18203)
 mesh = SubResource("ArrayMesh_xy6hy")
 skeleton = NodePath("")
 
 [node name="Forcep Arm L" type="MeshInstance3D" parent="katena forceps/Forcep Base"]
-transform = Transform3D(0.16735, -0.0194748, 0, 0.0043822, 0.743712, 0, 0, 0, 0.743967, -0.000775523, -0.255193, 0)
+transform = Transform3D(0.16735, -0.0194748, 0, 0.00438221, 0.743712, 0, 0, 0, 0.743967, -0.000775523, -0.255193, 0)
 mesh = SubResource("ArrayMesh_dgps7")
 skeleton = NodePath("")
 
 [node name="Forcep Arm R" type="MeshInstance3D" parent="katena forceps/Forcep Base"]
-transform = Transform3D(0.16735, 0.0194748, 0, -0.0043822, 0.743712, 0, 0, 0, 0.743967, -0.000775523, -0.255193, 0)
+transform = Transform3D(0.16735, 0.0194748, 0, -0.00438221, 0.743712, 0, 0, 0, 0.743967, -0.000775523, -0.255193, 0)
 mesh = SubResource("ArrayMesh_iskx2")
 skeleton = NodePath("")
 
@@ -808,6 +950,11 @@ libraries = {
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 21, 0, 30)
 
 [node name="incision knife" type="MeshInstance3D" parent="incision knife2"]
-transform = Transform3D(0.25, 0.258819, -0.933013, -0.0669873, 0.965926, 0.25, 0.965926, -7.45058e-09, 0.258819, -9.71419, -7.06692, -5.42396)
+transform = Transform3D(0.249999, 0.258819, -0.933013, -0.0669873, 0.965926, 0.25, 0.965926, 3.42727e-07, 0.258818, -9.71419, -7.06692, -5.42396)
 mesh = SubResource("ArrayMesh_usles")
 skeleton = NodePath("")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_g2wh3")
+}
