@@ -16,10 +16,17 @@ config/features=PackedStringArray("4.4")
 boot_splash/show_image=false
 config/icon="res://icon.png"
 
+[display]
+
+window/size/viewport_width=533
+window/size/viewport_height=300
+window/stretch/mode="canvas_items"
+
 [editor]
 
 movie_writer/mjpeg_quality=1.0
-movie_writer/movie_file="C:/Users/user/Documents/Uni - Medizintechnik/Master/Sommersemester 2025/Praktikum Visual Computing/godot_cataract2000_incision.avi"
+movie_writer/movie_file="C:/Users/user/Documents/Uni - Medizintechnik/Master/Sommersemester 2025/Praktikum Visual Computing/godot_cataract2000_incision_new2.avi"
+movie_writer/fps=15
 
 [gui]
 
@@ -54,6 +61,7 @@ buffering/agile_event_flushing=true
 
 [physics]
 
+common/physics_ticks_per_second=15
 common/enable_pause_aware_picking=true
 
 [rendering]
