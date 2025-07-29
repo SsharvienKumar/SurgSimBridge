@@ -1,61 +1,45 @@
 extends Node3D
 
+@onready var iris_node := $iris
+
+@export var rotation_scale := 0.8  # How sensitive the eye is
+
+@export var pupil_scale_range := Vector2(1.5, 2.1) # adjust for sensitivity of scale
+@export var iris_scale_range := Vector2(0.8, 1.2)
+
+var min_pupil_width = 80.0
+var max_pupil_width = 150.0
+var min_pupil_height = 70.0
+var max_pupil_height = 140.0
+var min_iris_width = 100.0
+var max_iris_width = 240.0
+var min_iris_height = 90.0
+var max_iris_height = 220.0
 
 
 
 #func _ready():
-	#flinch_eye()
-	#$Iris.scale.x = 150
 
-@export var json_folder := "res://case_2000_nn_data"
-@export var video_width := 533
-@export var video_height := 300
-@export var rotation_scale := 0.8  # How sensitive the eye is
+#func set_ranges(ranges: Dictionary):
+	#var iris = ranges["iris"]
+	#min_iris_width = iris["min_width"]
+	#max_iris_width = iris["max_width"]
+	#min_iris_height = iris["min_height"]
+	#max_iris_height = iris["max_height"]
 
-var frames := []           # List of JSON file names (sorted by frame)
-var current_frame := 0     # Keeps track of current frame
+	#var pupil = ranges["pupil"]
+	#min_pupil_width = pupil["min_width"]
+	#max_pupil_width = pupil["max_width"]
+	#min_pupil_height = pupil["min_height"]
+	#max_pupil_height = pupil["max_height"]
 
-var frame_time := 1.0 / 15.0  # One frame every 1/15 seconds
-var time_accumulator := 0.0
-
-func _ready():
-	load_all_jsons()
-
-func load_all_jsons():
-	var dir = DirAccess.open(json_folder)
-	if dir:
-		dir.list_dir_begin()
-		var file = dir.get_next()
-		while file != "":
-			if file.ends_with(".json"):
-				frames.append(file)
-			file = dir.get_next()
-		dir.list_dir_end()
-		frames.sort_custom(func(a, b): return a < b)
-	else:
-		print("Failed to open JSON folder.")
-		
-#func _process(delta):
-	#time_accumulator += delta
-	#if time_accumulator < frame_time:
-		#return
-	#time_accumulator = 0.0  # Reset after advancing one frame
-	#
-	#if current_frame >= frames.size():
-		#print("All frames processed.")
-		#set_process(false)  # Stop _process() from running
-		#return
-#
-	#var file = frames[current_frame]
-	#var path = json_folder + "/" + file
-	#var json = FileAccess.get_file_as_string(path)
-	#var data = JSON.parse_string(json)
-	#
-	#if typeof(data) == TYPE_DICTIONARY and data.has("1"):  # We use the entry with key "1"
-		#var point = data["1"]
-		#if point.has("centroid"):
-			#var x = point["centroid"][0]
-			#var y = point["centroid"][1]
+func process_data(data: Dictionary, video_width: int, video_height: int):
+	if data.has("1"):  #use the entry with key "1"
+		var iris = data["1"]
+		#eye movement + global movement
+		#if iris.has("centroid"):
+			#var x = iris["centroid"][0]
+			#var y = iris["centroid"][1]
 #
 			## Normalize pixel position to center of video frame
 			#var norm_x = (x - video_width / 2.0) / video_width
@@ -63,8 +47,63 @@ func load_all_jsons():
 #
 			## Rotate the eye: horizontal = Y, vertical = X
 			#rotation.y = norm_x * rotation_scale
-			#rotation.x = -norm_y * rotation_scale
-	#current_frame += 1
+			#rotation.x = norm_y * rotation_scale
+		#eyemovement - global movement
+		if iris.has("centroid"):
+			var x = iris["centroid"][0]
+			var y = iris["centroid"][1]
+			
+			var gx = 0.0
+			var gy = 0.0
+			if data.has("global_mov"):
+				gx = data["global_mov"][0]
+				gy = data["global_mov"][1]
+			
+			var rel_x = x - gx
+			var rel_y = y - gy
+
+			var norm_x = rel_x / video_width
+			var norm_y = rel_y / video_height
+
+			rotation.y = norm_x * rotation_scale
+			rotation.x = norm_y * rotation_scale
+
+			
+		# Iris full mesh scaling (size of eye)			
+		if iris.has("length"):
+			var length = iris["length"]
+			var iris_height = length[0]  # vertical (Y)
+			var iris_width = length[1]   # horizontal (X)
+
+			# Normalize separately for width and height
+			var t_x = clamp((iris_width - min_iris_width) / (max_iris_width - min_iris_width), 0.0, 1.0)
+			var t_y = clamp((iris_height - min_iris_height) / (max_iris_height - min_iris_height), 0.0, 1.0)
+
+			var scale_x = lerp(iris_scale_range.x, iris_scale_range.y, t_x)
+			var scale_y = lerp(iris_scale_range.x, iris_scale_range.y, t_y)
+
+			var base_scale = 0.75  # Tune this until the iris fits well
+			iris_node.scale = Vector3(scale_x, scale_y, scale_y) * base_scale #z is x because depth is very small and otherwise it would be off, can also be y, just used as default
+		
+		#angle change with iris angle, should later add based on if one is missing, use pupil angle
+		if iris.has("angle"):
+			var angle = iris["angle"]
+			var corrected_angle = -deg_to_rad(angle - 90.0)  # Subtract 90° to switch to major ellipse diameter, then negate to move clockwise
+			iris_node.rotation.z = deg_to_rad(corrected_angle)
+	
+	# Pupil dilation inside iris mesh
+	if data.has("2"):
+		var pupil = data["2"]
+		if pupil.has("length"):
+			var length = pupil["length"]
+			iris_node.call("set_pupil_scale_elliptical",
+				length[1], length[0],  # pupil width and height from current frame
+				min_pupil_width, max_pupil_width, min_pupil_height, max_pupil_height,
+				pupil_scale_range)
+
+
+
+
 
 
 func flinch_eye(offset := Vector3(0, -1, 0), return_delay := 0.1):

@@ -1,104 +1,105 @@
 extends MeshInstance3D
 
-var base_mesh : ArrayMesh
-var original_vertices : PackedVector3Array
+@export var radius_threshold := 2.0
+@export var pupil_z := 0.5
+@export var z_tolerance := 0.6
 
-@export var inner_radius_threshold := 1.5  # your measured inner radius
-@export var scale_factor := 0.6  # shrink factor for the inner hole
+var original_vertices = []  # Store original vertex positions
+var base_mesh: Mesh
 
 func _ready():
-	shrink_inner_radius()
+	base_mesh = mesh
+	if base_mesh == null or base_mesh.get_surface_count() == 0:
+		print("No valid mesh found.")
+		return
 
-func shrink_inner_radius():
-	var m := mesh
-	if m is ArrayMesh:
-		var arrays := m.surface_get_arrays(0)
-		var verts: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
-		var new_verts: PackedVector3Array = verts.duplicate()
+	var mdt := MeshDataTool.new()
+	if mdt.create_from_surface(base_mesh, 0) != OK:
+		print("Failed to load mesh into MeshDataTool.")
+		return
 
-		var pupil_center = Vector3(0, 0, 11.3)
-		var count := 0
-
-		for i in range(new_verts.size()):
-			var v = new_verts[i]
-
-			var dist = Vector2(v.x - pupil_center.x, v.z - pupil_center.z).length()
-			if dist < inner_radius_threshold:
-				var local_pos = Vector3(v.x - pupil_center.x, v.y - pupil_center.y, v.z - pupil_center.z)
-				local_pos *= scale_factor
-				new_verts[i] = pupil_center + local_pos
-				count += 1
-
-		print("Total vertices modified: ", count)
-		arrays[Mesh.ARRAY_VERTEX] = new_verts
-		m.clear_surfaces()
-		m.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+	# Save original vertex positions
+	for i in mdt.get_vertex_count():
+		original_vertices.append(mdt.get_vertex(i))
 
 
+func set_pupil_scale_elliptical(
+	width: float, height: float,
+	min_pupil_width: float, max_pupil_width: float, min_pupil_height: float, max_pupil_height: float,
+	scale_range: Vector2 #scale should be max 2.2 otherwise goes over other vertices and black rim appears (change in blender?)
+	):
+
+	if original_vertices.size() == 0:
+		print("Original vertices not stored.")
+		return
+		
+	#use only radius since the scaling is in radii
+	var radius_width = width / 2.0
+	var radius_height = height / 2.0
+	
+	var radius_max_pupil_width = max_pupil_width / 2.0
+	var radius_min_pupil_width = min_pupil_width / 2.0
+	var radius_max_pupil_height = max_pupil_height / 2.0
+	var radius_min_pupil_height = min_pupil_height / 2.0
+
+	var pupil_width_scale = clamp((radius_width - radius_min_pupil_width) / (radius_max_pupil_width - radius_min_pupil_width), 0.0, 1.0)
+	var pupil_height_scale = clamp((radius_height - radius_min_pupil_height) / (radius_max_pupil_height - radius_min_pupil_height), 0.0, 1.0)
+
+	var scale_x = lerp(scale_range.x, scale_range.y, pupil_width_scale)
+	var scale_y = lerp(scale_range.x, scale_range.y, pupil_height_scale)
 
 
+	var mdt = MeshDataTool.new()
+	if mdt.create_from_surface(base_mesh, 0) != OK:
+		print("Failed to reload mesh.")
+		return
+
+	for i in mdt.get_vertex_count():
+		var v = original_vertices[i]
+		if abs(v.z - pupil_z) < z_tolerance:
+			var xy = Vector2(v.x, v.y)
+			if xy.length() < radius_threshold:
+				var scaled_v = Vector3(v.x * scale_x, v.y * scale_y, v.z)
+				mdt.set_vertex(i, scaled_v)
+			else:
+				mdt.set_vertex(i, v)
+		else:
+			mdt.set_vertex(i, v)
+
+	var new_mesh = ArrayMesh.new()
+	mdt.commit_to_surface(new_mesh)
+	mesh = new_mesh
 
 
+##test pupil dilation
+#@export var iris_scale := 1
+#@export var radius_threshold := 2
+#@export var pupil_z := 0.5
+#@export var z_tolerance := 0.6  # NEW: Capture both front & back rings
+#
 #func _ready():
-	#print("Vertices test running.")
-	#var mesh_data = mesh.surface_get_arrays(0)
-	#var verts = mesh_data[Mesh.ARRAY_VERTEX]
-	#for v in verts:
-		#print(v)
-
-# Called once at the beginning
-#func _ready():
-	#var arrays = mesh.surface_get_arrays(0)
-	#original_vertices = arrays[Mesh.ARRAY_VERTEX].duplicate()
-	#
+	#var original_mesh := self.mesh
+	#if original_mesh == null or original_mesh.get_surface_count() == 0:
+		#print("No valid mesh found.")
+		#return
+#
+	#var mdt := MeshDataTool.new()
+	#if mdt.create_from_surface(original_mesh, 0) != OK:
+		#print("Failed to load mesh into MeshDataTool.")
+		#return
+#
+	#var modified := 0
+	#for i in mdt.get_vertex_count():
+		#var v := mdt.get_vertex(i)
+		#if abs(v.z - pupil_z) < z_tolerance:
+			#var xy := Vector2(v.x, v.y)
+			#if xy.length() < radius_threshold:
+				#var new_v := Vector3(v.x * iris_scale, v.y * iris_scale, v.z)
+				#mdt.set_vertex(i, new_v)
+				#modified += 1
+#
+	#print("Modified vertices:", modified)
+#
 	#var new_mesh := ArrayMesh.new()
-	#new_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
-	#mesh = new_mesh
-	##set_inner_radius_debug()
-	#set_inner_radius(0.6)  # Try different values
-#
-#
-#func set_inner_radius(new_radius: float):
-	##print("is this working?")
-	#var arrays = mesh.surface_get_arrays(0)
-	#var vertices : PackedVector3Array = original_vertices.duplicate()
-	#
-	#var center = Vector3(0, 0, 11.3)  # Your known pupil center
-	#var threshold = 11
-	#
-	#for i in range(vertices.size()):
-		##print("still working?")
-		#var vertex = vertices[i]
-		#var pos = vertex - center  # Shift so center is at (0,0,0)
-		#var dist = sqrt(pos.x * pos.x + pos.z * pos.z)
-		##print(dist)
-		 ## If vertex is near the center (the pupil), scale its distance
-		#if dist < threshold:  # 0.2 = inner threshold; tweak if needed
-			#print("near center?")
-			#var direction = Vector3(pos.x, 0, pos.z).normalized()
-			#var new_pos = direction * new_radius
-			#new_pos.y = pos.y  # Keep height unchanged
-			#vertices[i] = center + new_pos  # Shift back
-#
-	## Update mesh with new vertices
-	#arrays[Mesh.ARRAY_VERTEX] = vertices
-	#print("do we even get here?")
-	#var new_mesh := ArrayMesh.new()
-	#new_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
-	#mesh = new_mesh
-#
-#func set_inner_radius_debug():
-	#var arrays = mesh.surface_get_arrays(0)
-	#var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
-	#var center = Vector3(0, 0, 11.3)
-#
-	#var min_dist = 9999
-	#var max_dist = -9999
-#
-	#for vertex in vertices:
-		#var pos = vertex - center
-		#var dist = sqrt(pos.x * pos.x + pos.z * pos.z)
-		#min_dist = min(min_dist, dist)
-		#max_dist = max(max_dist, dist)
-#
-		#print("Distance range from center to vertices: ", min_dist, " - ", max_dist)
+	#mdt.commit_to_surface(new_mesh)
+	#self.mesh = new_mesh
