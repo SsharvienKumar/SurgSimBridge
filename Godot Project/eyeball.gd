@@ -2,19 +2,20 @@ extends Node3D
 
 @onready var iris_node := $iris
 
-@export var rotation_scale := 0.8  # How sensitive the eye is
+@export var rotation_scale := 1.5  # How sensitive the eye is
+@export var eye_rotation_offset := Vector2(deg_to_rad(0.0), deg_to_rad(0.0)) #adjust to fit eye
 
-@export var pupil_scale_range := Vector2(1.5, 2.1) # adjust for sensitivity of scale
-@export var iris_scale_range := Vector2(0.8, 1.2)
+@export var pupil_scale_range := Vector2(1.5, 2.2) # adjust for sensitivity of scale
+@export var iris_scale_range := Vector2(0.5, 1.3)
 
-var min_pupil_width = 80.0
-var max_pupil_width = 150.0
-var min_pupil_height = 70.0
-var max_pupil_height = 140.0
-var min_iris_width = 100.0
-var max_iris_width = 240.0
-var min_iris_height = 90.0
-var max_iris_height = 220.0
+var min_pupil_width = 110.0#114.96
+var max_pupil_width = 150.0#145.77
+var min_pupil_height = 80.0# 85.58#
+var max_pupil_height = 120.0#111.6#
+var min_iris_width = 100.0#187.05#
+var max_iris_width = 240.0#246.99#
+var min_iris_height = 90.0#126.34#
+var max_iris_height = 220.0#154.2#
 
 
 
@@ -65,8 +66,8 @@ func process_data(data: Dictionary, video_width: int, video_height: int):
 			var norm_x = rel_x / video_width
 			var norm_y = rel_y / video_height
 
-			rotation.y = norm_x * rotation_scale
-			rotation.x = norm_y * rotation_scale
+			rotation.y = norm_x * rotation_scale + eye_rotation_offset.y #the other way around, since x is left and right in the video but with rotation the y axis handles left right 
+			rotation.x = norm_y * rotation_scale + eye_rotation_offset.x
 
 			
 		# Iris full mesh scaling (size of eye)			
@@ -82,7 +83,7 @@ func process_data(data: Dictionary, video_width: int, video_height: int):
 			var scale_x = lerp(iris_scale_range.x, iris_scale_range.y, t_x)
 			var scale_y = lerp(iris_scale_range.x, iris_scale_range.y, t_y)
 
-			var base_scale = 0.75  # Tune this until the iris fits well
+			var base_scale = 0.71  # Tune this until the iris fits well
 			iris_node.scale = Vector3(scale_x, scale_y, scale_y) * base_scale #z is x because depth is very small and otherwise it would be off, can also be y, just used as default
 		
 		#angle change with iris angle, should later add based on if one is missing, use pupil angle
@@ -120,26 +121,3 @@ func flinch_eye(offset := Vector3(0, -1, 0), return_delay := 0.1):
 #func move_in_direction(target_rot: Vector3, speed := 5.0):
 	#print("move triggered")
 	#rotation_degrees = rotation_degrees.lerp(target_rot, speed * get_process_delta_time())
-
-
-
-#@export var max_angle_deg := 25.0
-#@export var smoothness := 5.0
-#
-#var target_rot := Vector3.ZERO
-#
-#func _process(delta):
-	#var mouse_pos = get_viewport().get_mouse_position()
-	#var screen_size = get_viewport().get_visible_rect().size
-#
-	#var norm_x = ((mouse_pos.x / screen_size.x) - 0.5) * 2
-	#var norm_y = ((mouse_pos.y / screen_size.y) - 0.5) * 2
-#
-	## Angle Limit
-	#var max_rad = deg_to_rad(max_angle_deg)
-	#target_rot.x = clamp(-norm_y * max_rad, -max_rad, max_rad)
-	#target_rot.y = clamp(norm_x * max_rad, -max_rad, max_rad)
-#
-	## Smooth movement: Linear interpolation
-	#rotation.x = lerp(rotation.x, target_rot.x, delta * smoothness)
-	#rotation.y = lerp(rotation.y, target_rot.y, delta * smoothness)

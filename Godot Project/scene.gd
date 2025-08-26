@@ -6,6 +6,7 @@ extends Node3D
 
 @onready var eyeball_node := $Eyeball
 @onready var camera_node := $Camera3D
+@onready var incknife_node := $"incision knife tip"
 
 var frames := []           # List of JSON file names (sorted by frame)
 var current_frame := 0     # Keeps track of current frame
@@ -97,13 +98,17 @@ func _process(delta):
 		eyeball_node.process_data(data, video_width, video_height) #eyemovements/size/dilation
 		if data.has("global_mov"):
 			camera_node.update_camera(data["global_mov"], video_width, video_height) #global/cameramovements
+		if data.has("4"):
+			incknife_node.update_incknife(data["4"], video_width, video_height)
+		else:
+			incknife_node.update_incknife({}, video_width, video_height)
 
-	var output_folder = "user://rendered_frames"
-	DirAccess.make_dir_absolute(output_folder)  # Create the folder (if not already)
-	if current_frame < frames.size():
-		var img: Image = get_viewport().get_texture().get_image()
-		var filename = "%s/%010d.png" % [output_folder, current_frame]
-		img.save_png(filename)
+	#var output_folder = "user://rendered_frames"
+	#DirAccess.make_dir_absolute(output_folder)  # Create the folder (if not already)
+	#if current_frame < frames.size():
+		#var img: Image = get_viewport().get_texture().get_image()
+		#var filename = "%s/%010d.png" % [output_folder, current_frame]
+		#img.save_png(filename)
 
 		current_frame += 1
 
