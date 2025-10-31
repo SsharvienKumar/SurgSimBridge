@@ -1,5 +1,3 @@
 res://default_env.tres
 res://Scene.tscn
-res://Camera.gd
 res://eyeball.gd
-res://incision_knife.gd

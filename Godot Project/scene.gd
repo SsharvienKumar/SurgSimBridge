@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var json_folder := "res://case_2000_gm_data"
+@export var json_folder := "res://synthetic_json"
 @export var video_width := 533
 @export var video_height := 300
 
@@ -16,7 +16,7 @@ var time_accumulator := 0.0
 
 func _ready():
 	load_all_jsons()
-	var ranges = calculate_range_values()
+	#var ranges = calculate_range_values()
 	#eyeball_node.set_ranges(ranges)
 
 func load_all_jsons():
@@ -96,8 +96,8 @@ func _process(delta):
 
 	if typeof(data) == TYPE_DICTIONARY:
 		eyeball_node.process_data(data, video_width, video_height) #eyemovements/size/dilation
-		if data.has("global_mov"):
-			camera_node.update_camera(data["global_mov"], video_width, video_height) #global/cameramovements
+		#if data.has("global_mov"):
+			#camera_node.update_camera(data["global_mov"], video_width, video_height) #global/cameramovements
 		if data.has("4"):
 			incknife_node.update_incknife(data["4"], video_width, video_height)
 		else:

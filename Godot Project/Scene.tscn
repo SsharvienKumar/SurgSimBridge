@@ -584,123 +584,99 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1, 3, 33.141)]
+"values": [Vector3(-0.5, 0, 33.141)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
+tracks/1/path = NodePath("Iris:inner_radius")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [0.6]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
+tracks/2/path = NodePath("../Camera3D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.0174533, 0.0174533, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Iris:inner_radius")
+tracks/3/path = NodePath("../katena forceps/Forcep Base:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.6]
+"values": [Vector3(-4.479, 3.957, 5)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Camera3D:rotation")
+tracks/4/path = NodePath("../katena forceps/Forcep Base:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-0.116973, 0.106327, 0.557775)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../katena forceps/Forcep Base:position")
+tracks/5/path = NodePath("../katena forceps/Forcep Base/Forcep Arm R:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-4.479, 3.957, 5)]
+"values": [Vector3(0, 0, -0.0261799)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../katena forceps/Forcep Base:rotation")
+tracks/6/path = NodePath("../katena forceps/Forcep Base/Forcep Arm L:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.116973, 0.106327, 0.557775)]
+"values": [Vector3(0, 0, 0.0261799)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../katena forceps/Forcep Base/Forcep Arm R:rotation")
+tracks/7/path = NodePath("../incision knife2/incision knife:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, -0.0261799)]
+"values": [Vector3(-9.714, -7.067, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../katena forceps/Forcep Base/Forcep Arm L:rotation")
+tracks/8/path = NodePath("../incision knife2/incision knife:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0.0261799)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../incision knife2/incision knife:position")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-9.714, -7.067, 0)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("../incision knife2/incision knife:rotation")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -986,7 +962,7 @@ light_specular = 0.0
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 33.141)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 33.141)
 environment = SubResource("Environment_7mckg")
 fov = 44.5
 script = ExtResource("4")
@@ -999,7 +975,7 @@ spot_range = 56.5557
 spot_angle = 15.2202
 
 [node name="Eyeball" type="CSGMesh3D" parent="."]
-transform = Transform3D(1.19982, -0.000365505, 0.0209396, 0, 1.19982, 0.0209428, -0.0209429, -0.0209398, 1.19963, 0, 0, 0)
+transform = Transform3D(1.19982, -0.000365503, 0.0209396, 0, 1.19982, 0.0209428, -0.0209429, -0.0209397, 1.19963, 0, 0, 0)
 use_collision = true
 flip_faces = true
 mesh = ExtResource("3_dob7g")
@@ -1037,7 +1013,7 @@ mesh = ExtResource("2")
 material = SubResource("StandardMaterial3D_eort7")
 
 [node name="iris" type="MeshInstance3D" parent="Eyeball"]
-transform = Transform3D(0.712891, -3.10721e-09, -0.0124436, -0.00021717, 0.712891, -0.0124418, 0.0124417, 0.0124437, 0.712783, -0.1, 0.2, 11.4)
+transform = Transform3D(0.713, 0, 0, 0, 0.713, 0, 0, 0, 0.713, -0.1, 0.2, 11.4)
 material_override = SubResource("StandardMaterial3D_q6i3i")
 mesh = SubResource("ArrayMesh_1jcvo")
 skeleton = NodePath("")
