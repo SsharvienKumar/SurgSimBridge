@@ -1,0 +1,41 @@
+{   
+    "0": {
+        "name": "Idle"
+    },
+    "1": {
+        "name": "Incision"
+    },
+    "2": {
+        "name": "Viscoelastic"
+    },
+    "3": {
+        "name": "Capsulorhexis"
+    },
+    "4": {
+        "name": "Hydrodissection"
+    },
+    "5": {
+        "name": "Phacoemulsification"
+    },
+    "6": {
+        "name": "Irrigation/Aspiration"
+    },
+    "7": {
+        "name": "Capsule Pulishing"
+    },
+    "8": {
+        "name": "Lens Implantation"
+    },
+    "9": {
+        "name": "Lens positioning"
+    },
+    "10": {
+        "name": "Anterior_Chamber Flushing"
+    },
+    "11": {
+        "name": "Viscoelastic_Suction"
+    },
+    "12": {
+        "name": "Tonifying/Antibiotics"
+    }
+}
