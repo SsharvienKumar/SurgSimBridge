@@ -1,6 +1,8 @@
+HELP.md
 script_extract_frames.py
 script_extract_global_mov.py
 script_extract_trajectory.py
+script_extract_video_endtime.py
 src/sam2/checkpoints/sam2.1_hiera_large.pt
 
 # Byte-compiled / optimized / DLL files

@@ -4,7 +4,7 @@ tqdm
 torchprofile
 pandas
 jpeg4py
-numpy==1.26.3
+numpy==1.23.1
 scikit-image==0.22.0
 matplotlib
 transformers
@@ -12,3 +12,4 @@ pillow
 PyQt5
 pycocotools
 dataclasses-json
+decord
