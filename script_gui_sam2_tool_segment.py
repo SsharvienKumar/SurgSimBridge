@@ -1,15 +1,15 @@
 
 #TODO: Some optimisation to speed up inference? (Since it is maxing out at about 11fps)
-#TODO: Also check to fix the problem with really long videos!
-#TODO: Load as frames (faster startup and also fixes the long video problem!)
+#TODO: Load as frames asynchronesly (faster startup and also fixes the long video problem!)
+#TODO: Move inference to another thread, so that it is not blocked by GUI / waits for gui to updat
 #TODO: Fix sam2 lack of post-proccessing!!
 #TODO: Maybe number key shortcuts for class selection
-#TODO: Move inference to another thread, so that it is not blocked by GUI / waits for gui to update
 
 import os
 import sys
 import cv2
 import json
+import torch
 import numpy as np
 from PIL import Image, ImageColor
 from natsort import natsorted
@@ -32,6 +32,8 @@ from sam2.demo.backend.server.inference.predictor import (
 LABEL_INFO_FILE = "/gris/gris-f/homestud/ssivakum/SurgSimBridge/ann/ann_tool_classes.json"
 OUTPUT_ANN_DIR = "/local/scratch/sharvien/SurgSimBridge/Cataract-1K"
 SKIP_LABEL = ["1", "2", "3", "9", "10"]
+VRAM_FRAME_LIMIT = 1700
+RAM_FRAME_LIMIT = 2100
 
 @dataclass
 class Prompt:
@@ -77,7 +79,7 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("SAM2 Video Annotator")
-        self.setGeometry(50, 50, 750, 450)
+        self.setGeometry(50, 50, 800, 450)
         self.video_path = None
         self.output_ann_path = OUTPUT_ANN_DIR
         self.label_info_path = LABEL_INFO_FILE
@@ -237,6 +239,7 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
         if hasattr(self, "start_response"):
             self.close_req = CloseSessionRequest(type="close_session", session_id=self.session_id)
             self.sam_api.close_session(self.close_req)
+            torch.cuda.empty_cache()
 
         # Loads the video_cap, shows number of frames and shows first frame 
         cap = cv2.VideoCapture(self.video_path)
@@ -248,9 +251,11 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
         self.slider.setMaximum(max(0, self.total_frames - 1))
         self.current_frame_idx = 0
 
-        #TODO: This needs to be a variable. Currently with 24GB VRAM fits 1800 frames without offloading
-        offload_video_flag = self.total_frames > 1800
-        self.start_req = StartSessionRequest(type="start_session", path=self.video_path)
+        #TODO: Instead of using mp4 videos, load from frames directly to avoid long video overloading ram
+        offload_video_flag = self.total_frames > VRAM_FRAME_LIMIT
+        sam2_video_path = self.video_path if self.total_frames < RAM_FRAME_LIMIT else self.video_path.replace("/videos/", "/video_frames_jpg/").replace(".mp4", "")
+
+        self.start_req = StartSessionRequest(type="start_session", path=sam2_video_path)
         self.start_response = self.sam_api.start_session(self.start_req, offload_video_flag=offload_video_flag)
         self.session_id = self.start_response.session_id
 
@@ -342,29 +347,36 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
         self.apply_mask_to_active(obj)
 
         propagation = False
-        for frame_response in self.sam_api.propagate_in_video(prop_req):
-            if not self.playing:
-                self.stop_propagation()
-                break
-            frame_idx = frame_response.frame_index
-            #TODO: Change the name val
-            for val in frame_response.results:
-                obj_id = val.object_id
-                mask_rle = val.mask
-                # mask = decode_masks({"counts": mask_rle.counts, "size": mask_rle.size})
-                mask = mask_rle.array
-                # update AnnObject's mask
-                obj = self.get_object_by_id(obj_id)
-                obj.masks.update(mask.astype(bool), frame_idx)
+        try:
+            for frame_response in self.sam_api.propagate_in_video(prop_req):
+                if not self.playing:
+                    self.stop_propagation()
+                    break
+                frame_idx = frame_response.frame_index
+                #TODO: Change the name val
+                for val in frame_response.results:
+                    obj_id = val.object_id
+                    mask_rle = val.mask
+                    # mask = decode_masks({"counts": mask_rle.counts, "size": mask_rle.size})
+                    mask = mask_rle.array
+                    # update AnnObject's mask
+                    obj = self.get_object_by_id(obj_id)
+                    obj.masks.update(mask.astype(bool), frame_idx)
 
-            self.goto_frame(frame_idx, propagation=propagation)
-            propagation = True
-            QtCore.QCoreApplication.processEvents()
+                self.goto_frame(frame_idx, propagation=propagation)
+                propagation = True
+                QtCore.QCoreApplication.processEvents()
+
+        except RuntimeError as e:
+            self.status.setText(f"Stopped due to error: {str(e)[:80]}...")
+            self.stop_propagation()
+            self.toggle_play()
 
 
     def stop_propagation(self):
         session = self.sam_api._InferenceAPI__get_session(self.session_id)
         self.sam_api.predictor.reset_state(session["state"])
+        torch.cuda.empty_cache()
 
 
     def apply_point_to_active(self, obj: AnnObject):

@@ -97,6 +97,7 @@ class InferenceAPI:
             inference_state = self.predictor.init_state(
                 request.path,
                 offload_video_to_cpu=offload_video_to_cpu,
+                async_loading_frames=True,
             )
             self.session_states[session_id] = {
                 "canceled": False,

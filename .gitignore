@@ -3,7 +3,10 @@ script_extract_frames.py
 script_extract_global_mov.py
 script_extract_trajectory.py
 script_extract_video_endtime.py
+script_gui_select_points_global_mov.py
 src/sam2/checkpoints/sam2.1_hiera_large.pt
+src/co-tracker/checkpoints/
+ann/ann_glob*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
