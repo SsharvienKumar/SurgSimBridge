@@ -16,10 +16,10 @@ from typing import List, Tuple, Dict, Optional
 from PyQt5 import QtCore, QtWidgets, QtGui
 
 INPUT_FRAME_DIR = "/local/scratch/sharvien/SurgSimBridge/Cataract-1K/video_frames_png"
-OUTPUT_ANN_DIR = "/gris/gris-f/homestud/ssivakum/SurgSimBridge/ann/ann_glob_pretracking_points"
+OUTPUT_ANN_DIR = "/home/ssivakum/SurgSimBridge/ann/ann_glob_pretracking_points"
 # Swtich this to None if normal annotation
-# POST_REFINEMENT_ANN = None
-POST_REFINEMENT_ANN = "/gris/gris-f/homestud/ssivakum/SurgSimBridge/ann/ann_glob_posttracking_refinement copy.csv"
+POST_REFINEMENT_ANN = None
+# POST_REFINEMENT_ANN = "/home/ssivakum/SurgSimBridge/ann/ann_glob_posttracking_refinement copy.csv"
 
 @dataclass
 class TrackingPoints:

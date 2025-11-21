@@ -30,7 +30,8 @@ from sam2.demo.backend.server.inference.predictor import (
 )
 
 LABEL_INFO_FILE = "/gris/gris-f/homestud/ssivakum/SurgSimBridge/ann/ann_tool_classes.json"
-OUTPUT_ANN_DIR = "/local/scratch/sharvien/SurgSimBridge/Cataract-1K"
+INPUT_VIDEO_DIR = "/local/scratch/sharvien/SurgSimBridge/Cataract-1K/videos"
+OUTPUT_ANN_DIR = "/local/scratch/sharvien/SurgSimBridge/Cataract-1K/mask_tools"
 SKIP_LABEL = ["1", "2", "3", "9", "10"]
 VRAM_FRAME_LIMIT = 1700
 RAM_FRAME_LIMIT = 2100
@@ -137,19 +138,22 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
         display_layout.addWidget(self.vid_title_status)
         display_layout.addWidget(self.video_label, alignment=QtCore.Qt.AlignCenter)
 
-        move_backward_btn = QtWidgets.QPushButton("<<")
-        move_backward_btn.setFixedSize(40, 30)
-        move_backward_btn.clicked.connect(lambda: self.goto_frame(self.current_frame_idx - 1))
-        slider_layout.addWidget(move_backward_btn)
-        move_forward_btn = QtWidgets.QPushButton(">>")
-        move_forward_btn.setFixedSize(40, 30)
-        move_forward_btn.clicked.connect(lambda: self.goto_frame(self.current_frame_idx + 1))
-        slider_layout.addWidget(move_forward_btn)
+        self.move_backward_btn = QtWidgets.QPushButton("<<")
+        self.move_backward_btn.setFixedSize(40, 30)
+        self.move_backward_btn.clicked.connect(lambda: self.goto_frame(self.current_frame_idx - 1))
+        self.move_backward_btn.setFocusPolicy(QtCore.Qt.NoFocus)
+        slider_layout.addWidget(self.move_backward_btn)
+        self.move_forward_btn = QtWidgets.QPushButton(">>")
+        self.move_forward_btn.setFixedSize(40, 30)
+        self.move_forward_btn.clicked.connect(lambda: self.goto_frame(self.current_frame_idx + 1))
+        self.move_forward_btn.setFocusPolicy(QtCore.Qt.NoFocus)
+        slider_layout.addWidget(self.move_forward_btn)
 
         self.slider = QtWidgets.QSlider(QtCore.Qt.Horizontal)
         self.slider.setMinimum(0)
         self.slider.setMaximum(0)
         self.slider.valueChanged.connect(self.on_slider_changed)
+        self.slider.setFocusPolicy(QtCore.Qt.NoFocus)
         slider_layout.addWidget(self.slider)
         display_layout.addLayout(slider_layout)
 
@@ -161,30 +165,40 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
         # Right top panel with buttons for controls
         btn_load = QtWidgets.QPushButton("Load Video")
         btn_load.clicked.connect(self.select_video)
+        btn_load.setFocusPolicy(QtCore.Qt.NoFocus)
         button_layout.addWidget(btn_load)
+        btn_auto = QtWidgets.QPushButton("Load Auto")
+        btn_auto.clicked.connect(self.select_auto)
+        btn_auto.setFocusPolicy(QtCore.Qt.NoFocus)
+        button_layout.addWidget(btn_auto)
         self.btn_load_next = QtWidgets.QPushButton("Load Next")
         self.btn_load_next.clicked.connect(self.next_video)
         self.btn_load_next.setEnabled(False)
+        self.btn_load_next.setFocusPolicy(QtCore.Qt.NoFocus)
         button_layout.addWidget(self.btn_load_next)
         button_layout.addStretch()
 
         self.btn_play = QtWidgets.QPushButton("Play")
         self.btn_play.clicked.connect(self.toggle_play)
+        self.btn_play.setFocusPolicy(QtCore.Qt.NoFocus)
         button_layout.addWidget(self.btn_play)
         btn_undo = QtWidgets.QPushButton("Undo Points")
         btn_undo.clicked.connect(self.undo_points)
+        btn_undo.setFocusPolicy(QtCore.Qt.NoFocus)
         button_layout.addWidget(btn_undo)
         btn_clear = QtWidgets.QPushButton("Clear Annotations")
         btn_clear.clicked.connect(self.clear_annotations)
+        btn_clear.setFocusPolicy(QtCore.Qt.NoFocus)
         button_layout.addWidget(btn_clear)
         btn_export = QtWidgets.QPushButton("Export Annotations")
         btn_export.clicked.connect(self.export_annotations)
+        btn_export.setFocusPolicy(QtCore.Qt.NoFocus)
         button_layout.addWidget(btn_export)
         button_layout.addStretch()
 
         # Right bottom panel with buttons for class selection
-        btn_class = QtWidgets.QButtonGroup(self)
-        btn_class.setExclusive(True)
+        self.btn_class = QtWidgets.QButtonGroup(self)
+        self.btn_class.setExclusive(True)
 
         for obj in self.objects:
             r, g, b = obj.color
@@ -194,7 +208,8 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
             btn.setCheckable(True)
             btn.setStyleSheet(f"""text-align: left; padding-left: 5px; color: rgb({r}, {g}, {b})""")
             btn.clicked.connect(lambda checked, obj_id=obj.id: self.on_obj_selected(obj_id))
-            btn_class.addButton(btn)
+            btn.setFocusPolicy(QtCore.Qt.NoFocus)
+            self.btn_class.addButton(btn)
             button_layout.addWidget(btn)
 
         # instr_text = "\nInstructions: \n- Left-click: Add positive point \n- Right-click: Add negative point \n- Middle-click: Play/Pause"
@@ -202,7 +217,7 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
         # button_layout.addWidget(lbl_instructions)
         # button_layout.addStretch()
         layout.addLayout(display_layout)
-        layout.addLayout(button_layout) 
+        layout.addLayout(button_layout)
 
 
     def select_video(self):
@@ -211,6 +226,16 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
             QtWidgets.QMessageBox.critical(self, "Error", "Not a valid format")
             return
         self.video_path = path
+        self.vid_title_status.setText(f"<b>Video Name:<b> {os.path.basename(self.video_path)}")
+        self.btn_load_next.setEnabled(True)
+        self.load_video()
+
+
+    def select_auto(self):
+        input_list = [i.removesuffix(".mp4") for i in os.listdir(INPUT_VIDEO_DIR)]
+        ann_list = os.listdir(OUTPUT_ANN_DIR)
+        to_ann_list = natsorted(list(set(input_list) - set(ann_list)))   
+        self.video_path = os.path.join(INPUT_VIDEO_DIR, to_ann_list[0]+".mp4")
         self.vid_title_status.setText(f"<b>Video Name:<b> {os.path.basename(self.video_path)}")
         self.btn_load_next.setEnabled(True)
         self.load_video()
@@ -251,7 +276,6 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
         self.slider.setMaximum(max(0, self.total_frames - 1))
         self.current_frame_idx = 0
 
-        #TODO: Instead of using mp4 videos, load from frames directly to avoid long video overloading ram
         offload_video_flag = self.total_frames > VRAM_FRAME_LIMIT
         sam2_video_path = self.video_path if self.total_frames < RAM_FRAME_LIMIT else self.video_path.replace("/videos/", "/video_frames_jpg/").replace(".mp4", "")
 
@@ -279,7 +303,7 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
             self.btn_play.setText("Pause")
             self.playing = True
             self.start_propagation()
-            
+
 
     def next_frame(self):
         # Advances to next frame when self.timer by calling goto_frame
@@ -449,7 +473,7 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
 
     def export_annotations(self):
         # The visible overlay masks in AnnObject and combined exported
-        mask_dir = os.path.join(self.output_ann_path, "mask_tools", os.path.basename(self.video_path).split(".")[0])
+        mask_dir = os.path.join(self.output_ann_path, os.path.basename(self.video_path).split(".")[0])
         os.makedirs(mask_dir, exist_ok=True)
         
         for idx in range(self.total_frames):
@@ -510,6 +534,29 @@ class SAM2_Video_Annotator(QtWidgets.QMainWindow):
                     return True 
                 return self.video_label_mousePressEvent(event)
         return super().eventFilter(obj, event)
+    
+
+    def keyPressEvent(self, event: QtGui.QKeyEvent):
+        # Left and right arrow keys for frame navigation
+        # Number keys for class selection
+        if not self.playing:
+            if event.key() == QtCore.Qt.Key_Left:
+                self.move_backward_btn.click()
+                event.accept()
+                return
+            if event.key() == QtCore.Qt.Key_Right:
+                self.move_forward_btn.click()
+                event.accept()
+                return
+            if QtCore.Qt.Key_1 <= event.key() <= QtCore.Qt.Key_8:
+                num = event.key() - QtCore.Qt.Key_1
+                for i, btn in enumerate(self.btn_class.buttons()):
+                    if i != num:
+                        continue
+                    btn.click()
+                    event.accept()
+                    return
+        super().keyPressEvent(event)
 
 
     def video_label_set_frame(self, rgb_frame: np.ndarray):
